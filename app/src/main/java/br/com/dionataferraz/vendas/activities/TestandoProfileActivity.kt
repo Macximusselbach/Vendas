@@ -1,8 +1,9 @@
-package br.com.dionataferraz.vendas
+package br.com.dionataferraz.vendas.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import br.com.dionataferraz.vendas.R
 import br.com.dionataferraz.vendas.databinding.ActivityTestandoProfileBinding
 import br.com.dionataferraz.vendas.models.Person
 import com.squareup.moshi.Moshi

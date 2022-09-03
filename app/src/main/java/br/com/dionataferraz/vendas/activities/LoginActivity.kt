@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas
+package br.com.dionataferraz.vendas.activities
 
 import android.content.Intent
 import android.os.Bundle

@@ -19,13 +19,13 @@ class ProfileViewModel : ViewModel() {
         age: String?,
         email: String?,
         password: String?,
-        genderValue: Int?
+        gender: String?
     ) {
         if (name.isNullOrBlank()
             && age.isNullOrBlank()
             && email.isNullOrBlank()
             && password.isNullOrBlank()
-            && genderValue == null
+            && gender.isNullOrBlank()
         ) {
             error.value = "Preencha todos os campos!"
 
@@ -41,7 +41,7 @@ class ProfileViewModel : ViewModel() {
         } else if (password.isNullOrBlank()) {
             error.value = "O campo senha é obrigatório!"
 
-        } else if (genderValue.toString().isNullOrBlank()) {
+        } else if (gender.isNullOrBlank()) {
             error.value = "O campo gênero é obrigatório!"
 
         } else {
@@ -51,34 +51,12 @@ class ProfileViewModel : ViewModel() {
                 age = age,
                 email = email,
                 password = password,
-                gender = checkGender(genderValue).name
+                gender = gender
             )
 
             person.value = personCreated
 
         }
-    }
-
-    private enum class Gender(value : String) {
-        MALE("Male"),
-        FEMALE("Female"),
-        OTHER("Other")
-
-    }
-
-    private fun checkGender(index: Int?): Gender {
-
-        if(index == 3) {
-            return Gender.MALE
-
-        } else if (index == 2) {
-            return Gender.FEMALE
-
-        } else if (index == 1) {
-            return Gender.OTHER
-
-        }
-        return Gender.OTHER
     }
 
 }

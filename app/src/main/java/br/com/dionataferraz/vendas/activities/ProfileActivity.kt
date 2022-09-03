@@ -1,15 +1,17 @@
-package br.com.dionataferraz.vendas
+package br.com.dionataferraz.vendas.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import br.com.dionataferraz.vendas.databinding.ActivityProfileBinding
 import br.com.dionataferraz.vendas.models.Person
 import br.com.dionataferraz.vendas.viewModels.ProfileViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -34,14 +36,18 @@ class ProfileActivity : AppCompatActivity() {
         val adapter = moshi.adapter(Person::class.java)
 
         binding.pfSaveButton.setOnClickListener {
+
             val radioGroup: RadioGroup
             radioGroup = binding.radioGroup
+            val radioButtonSelected: Int = radioGroup.checkedRadioButtonId
+            val radioButton: RadioButton = findViewById(radioButtonSelected)
+            val option: String = radioButton.text.toString()
 
             val name = binding.tvName.text.toString()
             val age = binding.tvAge.text.toString()
             val email = binding.tvEmail.text.toString()
             val password = binding.tvPassword.text.toString()
-            val gender = radioGroup.checkedRadioButtonId
+            val gender = option
 
             viewModel.createPerson(name, age, email, password, gender)
 
@@ -61,6 +67,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.pfClearButton.setOnClickListener {
+
             clearFields()
             clearSharedPreferences()
 
