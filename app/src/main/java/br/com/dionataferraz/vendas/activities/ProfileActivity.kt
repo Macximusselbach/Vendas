@@ -7,7 +7,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.dionataferraz.vendas.databinding.ActivityProfileBinding
-import br.com.dionataferraz.vendas.models.Person
+import br.com.dionataferraz.vendas.models.PersonModel
 import br.com.dionataferraz.vendas.viewModels.ProfileViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -33,7 +33,7 @@ class ProfileActivity : AppCompatActivity() {
         )
 
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-        val adapter = moshi.adapter(Person::class.java)
+        val adapter = moshi.adapter(PersonModel::class.java)
 
         binding.pfSaveButton.setOnClickListener {
 
@@ -41,17 +41,16 @@ class ProfileActivity : AppCompatActivity() {
             radioGroup = binding.radioGroup
             val radioButtonSelected: Int = radioGroup.checkedRadioButtonId
             val radioButton: RadioButton = findViewById(radioButtonSelected)
-            val option: String = radioButton.text.toString()
 
             val name = binding.tvName.text.toString()
             val age = binding.tvAge.text.toString()
             val email = binding.tvEmail.text.toString()
             val password = binding.tvPassword.text.toString()
-            val gender = option
+            val gender = radioButton.text.toString()
 
             viewModel.createPerson(name, age, email, password, gender)
 
-            viewModel.personLiveData.observe(this) { person ->
+            viewModel.personModelLiveData.observe(this) { person ->
 
                 val edit = sharedPreferences.edit()
 
@@ -91,8 +90,6 @@ class ProfileActivity : AppCompatActivity() {
                 )
             }
         }
-
-
     }
 
     private fun clearFields() {

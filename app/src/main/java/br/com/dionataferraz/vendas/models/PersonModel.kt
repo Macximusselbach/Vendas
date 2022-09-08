@@ -1,6 +1,6 @@
 package br.com.dionataferraz.vendas.models
 
-data class Person(
+data class PersonModel(
     val name: String,
     val age: String,
     val email: String,

@@ -4,15 +4,15 @@ package br.com.dionataferraz.vendas.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.dionataferraz.vendas.models.Person
+import br.com.dionataferraz.vendas.models.PersonModel
 
 
 class ProfileViewModel : ViewModel() {
 
     private val error: MutableLiveData<String> = MutableLiveData()
     val shouldShowError: LiveData<String> = error
-    private val person: MutableLiveData<Person> = MutableLiveData()
-    val personLiveData: LiveData<Person> = person
+    private val personModel: MutableLiveData<PersonModel> = MutableLiveData()
+    val personModelLiveData: LiveData<PersonModel> = personModel
 
     fun createPerson(
         name: String?,
@@ -46,7 +46,7 @@ class ProfileViewModel : ViewModel() {
 
         } else {
 
-            val personCreated = Person(
+            val personModelCreated = PersonModel(
                 name = name,
                 age = age,
                 email = email,
@@ -54,7 +54,7 @@ class ProfileViewModel : ViewModel() {
                 gender = gender
             )
 
-            person.value = personCreated
+            personModel.value = personModelCreated
 
         }
     }

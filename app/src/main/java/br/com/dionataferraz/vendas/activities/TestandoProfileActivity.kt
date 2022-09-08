@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import br.com.dionataferraz.vendas.R
 import br.com.dionataferraz.vendas.databinding.ActivityTestandoProfileBinding
-import br.com.dionataferraz.vendas.models.Person
+import br.com.dionataferraz.vendas.models.PersonModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
@@ -23,7 +23,7 @@ class TestandoProfileActivity : AppCompatActivity() {
         )
 
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-        val adapter = moshi.adapter(Person::class.java)
+        val adapter = moshi.adapter(PersonModel::class.java)
 
         findViewById<TextView>(R.id.teste).apply {
             val personFromSharedPreferences = sharedPreferences.getString("Person", null)
