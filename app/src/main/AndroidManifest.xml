@@ -14,13 +14,19 @@
         android:theme="@style/Theme.Vendas"
         tools:targetApi="31">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccountCreateActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.TransactionsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.TestandoProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ProfileActivity"
+            android:name=".profile.ProfileCreateActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SplashActivity"
@@ -33,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="true" />
     </application>
 

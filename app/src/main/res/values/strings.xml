@@ -2,6 +2,7 @@
     <string name="app_name">Vendas</string>
 
     <string name="name">Nome</string>
+    <string name="account_name">Nome da conta</string>
     <string name="age">Idade</string>
     <string name="email">Email</string>
     <string name="password">Senha</string>
@@ -11,6 +12,13 @@
     <string name="female">Feminino</string>
     <string name="other">Outro</string>
     <string name="create_profile">Criar perfil</string>
+    <string name="create_account">Criar conta</string>
     <string name="save">Salvar</string>
     <string name="clear">Limpar</string>
+    <string name="account_responsible">Responsável da conta</string>
+    <string name="balance">Saldo</string>
+    <string name="debit">Débito</string>
+    <string name="credit">Crédito</string>
+    <string name="account_type">Tipo de conta</string>
+    <string name="create">criar</string>
 </resources>

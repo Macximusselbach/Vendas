@@ -1,10 +1,9 @@
-package br.com.dionataferraz.vendas.viewModels
+package br.com.dionataferraz.vendas.profile
 
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.dionataferraz.vendas.models.PersonModel
 
 
 class ProfileViewModel : ViewModel() {

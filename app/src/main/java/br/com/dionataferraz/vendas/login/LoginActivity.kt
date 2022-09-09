@@ -1,11 +1,12 @@
-package br.com.dionataferraz.vendas.activities
+package br.com.dionataferraz.vendas.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.com.dionataferraz.vendas.activities.HomeActivity
+import br.com.dionataferraz.vendas.profile.ProfileCreateActivity
 import br.com.dionataferraz.vendas.databinding.ActivityLoginBinding
-import br.com.dionataferraz.vendas.viewModels.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
 
@@ -20,8 +21,13 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.btCreateProfile.setOnClickListener {
+            val intent = Intent(this, ProfileCreateActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.btLogin.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
 
