@@ -20,16 +20,16 @@
             android:name=".AccountCreateActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.TransactionsActivity"
+            android:name=".activities.transactions.TransactionsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.TestandoProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".profile.ProfileCreateActivity"
+            android:name="br.com.dionataferraz.vendas.activities.profile.ProfileCreateActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".activities.splashScreen.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".login.LoginActivity"
+            android:name="br.com.dionataferraz.vendas.activities.login.LoginActivity"
             android:exported="true" />
     </application>
 

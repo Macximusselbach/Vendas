@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas.profile
+package br.com.dionataferraz.vendas.activities.profile
 
 
 import androidx.lifecycle.LiveData

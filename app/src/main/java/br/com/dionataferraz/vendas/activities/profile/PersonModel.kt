@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas.profile
+package br.com.dionataferraz.vendas.activities.profile
 
 data class PersonModel(
     val name: String,

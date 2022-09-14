@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import br.com.dionataferraz.vendas.R
 import br.com.dionataferraz.vendas.databinding.ActivityTestandoProfileBinding
-import br.com.dionataferraz.vendas.profile.PersonModel
+import br.com.dionataferraz.vendas.activities.profile.PersonModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 

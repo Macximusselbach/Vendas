@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas.profile
+package br.com.dionataferraz.vendas.activities.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import br.com.dionataferraz.vendas.activities.HomeActivity
+import br.com.dionataferraz.vendas.activities.home.HomeActivity
 import br.com.dionataferraz.vendas.databinding.ActivityProfileCreateBinding
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

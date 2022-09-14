@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas.activities
+package br.com.dionataferraz.vendas.activities.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

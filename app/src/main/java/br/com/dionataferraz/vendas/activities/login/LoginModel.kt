@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas.login
+package br.com.dionataferraz.vendas.activities.login
 
 data class LoginModel(
     val email: String,
