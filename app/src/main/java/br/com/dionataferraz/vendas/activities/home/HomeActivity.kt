@@ -18,6 +18,10 @@ class HomeActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setTitle("Home")
+
         binding.btCreateAccount.setOnClickListener {
             val intent = Intent(this, AccountCreateActivity::class.java)
             startActivity(intent)

@@ -9,11 +9,15 @@
         android:layout_height="match_parent"
         tools:context=".activities.home.HomeActivity">
 
-        <TextView
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HOME"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:background="@color/purple_500"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
 
         <Button
             android:id="@+id/bt_create_account"

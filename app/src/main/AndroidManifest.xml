@@ -14,10 +14,11 @@
         android:theme="@style/Theme.Vendas"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
+            android:name=".activities.home.HomeActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.login.LoginActivity"/>
         <activity
-            android:name=".AccountCreateActivity"
+            android:name=".activities.account.AccountCreateActivity"
             android:exported="false" />
         <activity
             android:name=".activities.transactions.TransactionsActivity"

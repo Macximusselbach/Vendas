@@ -7,20 +7,20 @@ import java.lang.Exception
 
 class LoginDataSource {
 
-    private val service = RetrofitNetworkClient
-        .createNetworkClient().create(LoginAPI::class.java)
+//    private val service = RetrofitNetworkClient
+//        .createNetworkClient().create(LoginAPI::class.java)
     
-    suspend fun login(email: String, password: String): Result<UserResponse, ErrorModel> {
-        return withContext(Dispatchers.IO){
-            try {
-                val user = service.login(email, password)
-                Result.Sucesss(user)
-
-            } catch (exception: Exception) {
-                Result.Error(ErrorModel)
-            }
-        }
-    }
+//    suspend fun login(email: String, password: String): Result<UserResponse, ErrorModel> {
+//        return withContext(Dispatchers.IO){
+//            try {
+//                val user = service.login(email, password)
+//                Result.Sucesss(user)
+//
+//            } catch (exception: Exception) {
+//                Result.Error(ErrorModel)
+//            }
+//        }
+//    }
 }
 
 object ErrorModel
