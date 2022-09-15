@@ -14,4 +14,6 @@ class LoginRepository {
     suspend fun login(email: String, password: String) : Result<UserResponse, ErrorModel> {
         return remoteDataSource.login(email = email, password = password)
     }
+
+
 }

@@ -29,7 +29,7 @@ class LoginViewModel : ViewModel() {
                 if (user.get() != null) {
                     home.value = true
                 }
- 
+
                 Log.e("Login: ", user.get().toString())
 
             } else {
