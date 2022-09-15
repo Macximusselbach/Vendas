@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.btCreateProfile.setOnClickListener {
+        binding.registerButton.setOnClickListener {
             val intent = Intent(this, ProfileCreateActivity::class.java)
             startActivity(intent)
         }
@@ -70,18 +70,18 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            database.DAO().insertUser(
-                UserEntity(
-                    name = "Macximus",
-                    email = "max@gmail.com",
-                    password = "12345",
-                )
-            )
-
-            val users = database.DAO().getUser()
-            Log.e("DAO", users.toString())
-        }
+//        CoroutineScope(Dispatchers.IO).launch {
+//            database.DAO().insertUser(
+//                UserEntity(
+//                    name = "Macximus",
+//                    email = "max@gmail.com",
+//                    password = "12345",
+//                )
+//            )
+//
+//            val users = database.DAO().getUser()
+//            Log.e("DAO", users.toString())
+//        }
 
     }
 }
