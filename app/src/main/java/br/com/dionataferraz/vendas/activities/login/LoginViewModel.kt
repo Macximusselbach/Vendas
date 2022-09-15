@@ -21,39 +21,24 @@ class LoginViewModel : ViewModel() {
     val shouldShowHome: LiveData<Boolean> = home
 
     fun login(email: String?, password: String?) {
-//        viewModelScope.launch {
-//
-//            if (email != null && password != null) {
+        viewModelScope.launch {
+
+            if (email != null && password != null) {
 //                val user = useCase.login(email = email, password = password)
 //
 //                if (user.get() != null) {
 //
 //                    home.value = true
 //                }
-//
-//                Log.e("Login: ", user.get().toString())
-//
-//            } else {
-//                error.value = true
-//            }
-//        }
 
+                home.value = true
 
-        val user = UserTest(
-            email = "teste@gmail.com",
-            password = "12345"
-        )
+                //Log.e("Login: ", user.get().toString())
 
-        if (email == user.email && password == user.password) {
-            home.value = true
-        } else {
-            error.value = true
+            } else {
+                error.value = true
+            }
         }
 
     }
 }
-
-data class UserTest(
-    val email : String,
-    val password : String,
-)

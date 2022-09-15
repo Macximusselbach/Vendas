@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Vendas</string>
-
     <string name="name">Nome</string>
     <string name="account_name">Nome da conta</string>
     <string name="age">Idade</string>

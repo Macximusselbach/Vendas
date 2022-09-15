@@ -26,6 +26,9 @@ class ProfileCreateActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setTitle("Home")
+
         val sharedPreferences = getSharedPreferences(
             "Profile",
             MODE_PRIVATE

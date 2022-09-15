@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import br.com.dionataferraz.vendas.activities.account.AccountCreateActivity
+import br.com.dionataferraz.vendas.activities.transactions.TransactionsActivity
 import br.com.dionataferraz.vendas.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -24,6 +25,13 @@ class HomeActivity : AppCompatActivity() {
         binding.btCreateAccount.setOnClickListener {
             val intent = Intent(this, AccountCreateActivity::class.java)
             startActivity(intent)
+
         }
+
+        binding.btTransactions.setOnClickListener {
+            val intent = Intent(this, TransactionsActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

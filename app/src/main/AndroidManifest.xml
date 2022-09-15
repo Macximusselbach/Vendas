@@ -24,13 +24,15 @@
             android:parentActivityName=".activities.home.HomeActivity" />
         <activity
             android:name=".activities.transactions.TransactionsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.home.HomeActivity"/>
         <activity
             android:name=".activities.TestandoProfileActivity"
             android:exported="false" />
         <activity
             android:name="br.com.dionataferraz.vendas.activities.profile.ProfileCreateActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.login.LoginActivity"/>
         <activity
             android:name=".activities.splashScreen.SplashActivity"
             android:exported="true"
