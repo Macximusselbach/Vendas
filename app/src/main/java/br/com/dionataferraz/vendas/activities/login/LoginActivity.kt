@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.dionataferraz.vendas.activities.home.HomeActivity
 import br.com.dionataferraz.vendas.activities.profile.ProfileCreateActivity
 import br.com.dionataferraz.vendas.databinding.ActivityLoginBinding
+import java.math.BigDecimal
+import java.math.BigInteger
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,8 +29,20 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btLogin.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+
+            viewModel.login(email = email, password = password)
+
+        }
+
+        viewModel.shouldShowHome.observe(this) { goHome ->
+            if (goHome) {
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+
+            }
         }
 
         viewModel.shouldShowError.observe(this) { shouldShow ->

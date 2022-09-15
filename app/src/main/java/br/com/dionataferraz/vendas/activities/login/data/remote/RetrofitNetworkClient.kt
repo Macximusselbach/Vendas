@@ -13,13 +13,13 @@ const val DURATION = 60L
 
 object RetrofitNetworkClient {
 
-    fun createNetworkClient(baseUrl: String = BuildConfig.HTTP_SERVER) {
-        retrifitClient(
+    fun createNetworkClient(baseUrl: String = BuildConfig.HTTP_SERVER): Retrofit {
+        return retrofitClient(
             baseUrl = baseUrl,
             httpClient = httpClient(),
             moshiConverter = moshi()
-
         )
+
     }
 
     private fun moshi(): MoshiConverterFactory {
@@ -51,7 +51,7 @@ object RetrofitNetworkClient {
         }
     }
 
-    private fun retrifitClient(
+    private fun retrofitClient(
         baseUrl: String,
         httpClient: OkHttpClient,
         moshiConverter: MoshiConverterFactory

@@ -11,10 +11,10 @@ class AccountCreateViewModel : ViewModel() {
     private val accountModel: MutableLiveData<AccountModel> = MutableLiveData()
     val accountModelLiveData: LiveData<AccountModel> = accountModel
 
-    fun createAccount(name: String?, balance: Number, responsible: String?, type: String?) {
+    fun createAccount(name: String?, balance: String, responsible: String?, type: String?) {
 
         if (name.isNullOrBlank()
-            && balance.toString().isNullOrBlank()
+            && balance.isNullOrBlank()
             && responsible.isNullOrBlank()
             && type.isNullOrBlank()
         ) {

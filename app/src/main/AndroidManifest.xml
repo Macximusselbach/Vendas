@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="br.com.dionataferraz.vendas">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,10 +17,11 @@
         <activity
             android:name=".activities.home.HomeActivity"
             android:exported="false"
-            android:parentActivityName=".activities.login.LoginActivity"/>
+            android:parentActivityName=".activities.login.LoginActivity" />
         <activity
             android:name=".activities.account.AccountCreateActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.home.HomeActivity" />
         <activity
             android:name=".activities.transactions.TransactionsActivity"
             android:exported="false" />
