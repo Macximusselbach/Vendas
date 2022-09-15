@@ -21,4 +21,6 @@
     <string name="credit">Crédito</string>
     <string name="account_type">Tipo de conta</string>
     <string name="create">criar</string>
+    <string name="new_user">Novo por aqui?</string>
+    <string name="register">Registre-se</string>
 </resources>

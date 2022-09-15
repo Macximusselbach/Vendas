@@ -11,14 +11,21 @@
         android:orientation="vertical"
         tools:context=".activities.account.AccountCreateActivity">
 
+        <ImageView
+            android:id="@+id/pf_image"
+            android:src="@mipmap/logo_fundatec"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="@string/create_account"
             android:textAlignment="center"
-            android:textSize="50sp" />
+            android:textSize="50sp"
+            app:layout_constraintTop_toBottomOf="@id/pf_image"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_name"
