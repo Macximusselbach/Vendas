@@ -9,6 +9,13 @@
         android:paddingHorizontal="16dp"
         tools:context=".ProfileActivity">
 
+        <ImageView
+            android:id="@+id/pf_image"
+            android:src="@mipmap/logo_fundatec"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_name"
             android:layout_width="match_parent"
