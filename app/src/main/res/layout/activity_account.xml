@@ -1,0 +1,130 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activities.account.AccountActivity">
+
+        <ImageView
+            android:id="@+id/pf_image"
+            android:src="@drawable/logo_fundatec"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_account"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            app:layout_constraintTop_toBottomOf="@id/pf_image"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/account_name"
+                android:imeOptions="actionDone"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_balance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/ti_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/balance"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_responsible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/ti_balance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_responsible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/account_responsible"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/radio_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="@string/account_type"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/ti_responsible" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/radio_title">
+
+            <RadioButton
+                android:id="@+id/radioDebit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/debit" />
+
+            <RadioButton
+                android:id="@+id/radioCredit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/credit" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/create"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
