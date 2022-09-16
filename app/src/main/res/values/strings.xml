@@ -15,4 +15,12 @@
     <string name="home_bank_balance">R$ 0,00</string>
     <string name="home_balance_available">Saldo disponivel</string>
     <string name="home_next_invoice">Próxima fatura</string>
+    <string name="create_account">Criar conta</string>
+    <string name="account_name">Nome da conta</string>
+    <string name="balance">Saldo</string>
+    <string name="account_responsible">Responsável</string>
+    <string name="account_type">Tipo de conta</string>
+    <string name="debit">Débito</string>
+    <string name="credit">Crédito</string>
+    <string name="create">Criar</string>
 </resources>
