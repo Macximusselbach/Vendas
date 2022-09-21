@@ -3,16 +3,17 @@ package br.com.dionataferraz.vendas.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.dionataferraz.vendas.activities.transactions.TransactionModel
 import br.com.dionataferraz.vendas.databinding.ItemListBinding
 
 class TransactionAdapter(private val listener: Listener) :
     RecyclerView.Adapter<TransactionViewHolder>() {
 
     interface Listener {
-        fun onItemClick(text: String)
+        fun onItemClick(transaction: TransactionModel)
     }
 
-    private val listItem: MutableList<String> = mutableListOf()
+    private val listItem: MutableList<TransactionModel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val binding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -28,7 +29,11 @@ class TransactionAdapter(private val listener: Listener) :
         return listItem.size
     }
 
-    fun addList(list: List<String>) {
+    fun addItem(transaction: TransactionModel) {
+        listItem.add(transaction)
+    }
+
+    fun addList(list: List<TransactionModel>) {
         listItem.addAll(list)
 
     }
@@ -41,9 +46,9 @@ class TransactionViewHolder(
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(name: String) {
-        binding.tvName.text = name
-        binding.root.setOnClickListener { listener.onItemClick(name) }
+    fun bind(transaciton: TransactionModel) {
+        binding.tvName.text = transaciton.toString()
+        binding.root.setOnClickListener { listener.onItemClick(transaciton) }
 
     }
 }
