@@ -7,5 +7,5 @@ data class TransactionModel(
     val date : Date,
     val value : Double,
     val description : String,
-    val place : Place,
+    val place : TransactionPlace,
 )

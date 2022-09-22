@@ -30,7 +30,7 @@ class ProfileCreateActivity : AppCompatActivity() {
         supportActionBar?.setTitle("Home")
 
         val sharedPreferences = getSharedPreferences(
-            "Profile",
+            "Profiles",
             MODE_PRIVATE
         )
 

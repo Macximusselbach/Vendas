@@ -3,7 +3,9 @@ package br.com.dionataferraz.vendas.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.dionataferraz.vendas.R
 import br.com.dionataferraz.vendas.activities.transactions.TransactionModel
+import br.com.dionataferraz.vendas.activities.transactions.TransactionPlace
 import br.com.dionataferraz.vendas.databinding.ItemListBinding
 
 class TransactionAdapter(private val listener: Listener) :
@@ -47,8 +49,16 @@ class TransactionViewHolder(
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(transaciton: TransactionModel) {
-        binding.tvName.text = transaciton.toString()
-        binding.root.setOnClickListener { listener.onItemClick(transaciton) }
+
+        binding.tvDescription.text = transaciton.description
+        binding.tvTime.text = transaciton.date.hours.toString() + ":" + transaciton.date.minutes.toString()
+        binding.tvValue.text = transaciton.value.toString()
+
+        when(transaciton.place) {
+            TransactionPlace.MARKET -> binding.ivIcon.setImageResource(R.drawable.mercado)
+            TransactionPlace.GAS -> binding.ivIcon.setImageResource(R.drawable.gasolina)
+            TransactionPlace.SOCIAL -> binding.ivIcon.setImageResource(R.drawable.social)
+        }
 
     }
 }

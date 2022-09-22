@@ -2,7 +2,6 @@ package br.com.dionataferraz.vendas.activities.transactions
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import br.com.dionataferraz.vendas.adapters.TransactionAdapter
 import br.com.dionataferraz.vendas.databinding.ActivityTransactionsBinding
 import java.util.*
@@ -27,24 +26,23 @@ class TransactionsActivity : AppCompatActivity(), TransactionAdapter.Listener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle("Transações")
 
-        val transaction = TransactionModel(
-            date = Date(2022,9,21,18,13),
-            value = 10.00,
-            description = "Mercado",
-            place = Place.MARKET
+        val sharedPreferences = getSharedPreferences(
+            "Transactions",
+            MODE_PRIVATE
         )
 
-        binding.rcList.adapter = adapter
-        adapter.addItem(transaction)
+        viewModel.saveTransactionOnSP(sharedPreferences)
+        viewModel.getTransactionsOnSP(sharedPreferences)
 
+        viewModel.showTransactions.observe(this) { listToShow ->
+
+            binding.rcList.adapter = adapter
+            adapter.addList(listToShow)
+        }
 
     }
 
     override fun onItemClick(text: TransactionModel) {
-        Toast.makeText(
-            this,
-            text.toString(),
-            Toast.LENGTH_LONG
-        ).show()
+
     }
 }
