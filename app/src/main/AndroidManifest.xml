@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="br.com.dionataferraz.vendas">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,6 +16,14 @@
         android:theme="@style/Theme.Vendas"
         tools:targetApi="31">
         <activity
+            android:name=".activities.balance.ChangeBalanceActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.home.HomeActivity"/>
+        <activity
+            android:name=".activities.balance.BalanceChangesActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.home.HomeActivity"/>
+        <activity
             android:name=".activities.home.HomeActivity"
             android:exported="false"
             android:parentActivityName=".activities.login.LoginActivity" />
@@ -25,14 +34,14 @@
         <activity
             android:name=".activities.transactions.TransactionsActivity"
             android:exported="false"
-            android:parentActivityName=".activities.home.HomeActivity"/>
+            android:parentActivityName=".activities.home.HomeActivity" />
         <activity
             android:name=".activities.TestandoProfileActivity"
             android:exported="false" />
         <activity
             android:name="br.com.dionataferraz.vendas.activities.profile.ProfileCreateActivity"
             android:exported="false"
-            android:parentActivityName=".activities.login.LoginActivity"/>
+            android:parentActivityName=".activities.login.LoginActivity" />
         <activity
             android:name=".activities.splashScreen.SplashActivity"
             android:exported="true"

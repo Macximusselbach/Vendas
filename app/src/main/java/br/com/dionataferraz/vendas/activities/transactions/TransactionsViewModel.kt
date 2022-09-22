@@ -54,7 +54,7 @@ class TransactionsViewModel : ViewModel() {
             TransactionModel(
                 date = Date(2022, 9, 21, 18, 13),
                 value = 10.00,
-                description = "Mercadoocial",
+                description = "Social",
                 place = TransactionPlace.SOCIAL
             )
         )
