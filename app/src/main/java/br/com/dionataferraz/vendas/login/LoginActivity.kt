@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginViewModel
 
     private val database: VendasDatabase by lazy {
-        VendasDatabase.getInstance(this)
+        VendasDatabase.getInstance()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,13 +56,13 @@ class LoginActivity : AppCompatActivity() {
 
 
         CoroutineScope(Dispatchers.IO).launch {
-//            database.DAO().insertUser(
-//                UserEntity(
-//                    name = "Dionata Leonel",
-//                    email = "dionataferraz@gmail.com",
-//                    password = "123456",
-//                )
-//            )
+            database.DAO().insertUser(
+                UserEntity(
+                    name = "Dionata Leonel",
+                    email = "dionataferraz@gmail.com",
+                    password = "123456",
+                )
+            )
             val users = database.DAO().getUser()
             Log.e("DAO", users.toString())
         }

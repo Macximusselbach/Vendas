@@ -3,10 +3,7 @@ package br.com.dionataferraz.vendas
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import br.com.dionataferraz.vendas.databinding.ActivityLoginBinding
 import br.com.dionataferraz.vendas.databinding.ActivityProfileBinding
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -17,7 +14,8 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
 
         binding.btSave.setOnClickListener {
-            Toast.makeText(this,  binding.rg.checkedRadioButtonId.toString(), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, binding.rg.checkedRadioButtonId.toString(), Toast.LENGTH_LONG)
+                .show()
         }
     }
 

@@ -27,6 +27,7 @@ class TransactionAdapter(private val listener: Listener) :
     override fun getItemCount(): Int {
         return listItem.size
     }
+
     fun addNewList(list: List<String>) {
         listItem.clear()
         notifyItemRangeRemoved(0, listItem.size)
@@ -36,6 +37,7 @@ class TransactionAdapter(private val listener: Listener) :
     fun addList(list: List<String>) {
         listItem.addAll(list)
     }
+
     fun updateItem(item: String, position: Int) {
         listItem[position] = item
         notifyItemChanged(position)
@@ -46,7 +48,7 @@ class TransactionAdapter(private val listener: Listener) :
 class TransactionViewHolder(
     private val binding: ItemListBinding,
     private val listener: TransactionAdapter.Listener
-): RecyclerView.ViewHolder(binding.root) {
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(name: String) {
         binding.tvName.text = name

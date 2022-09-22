@@ -1,6 +1,5 @@
 package br.com.dionataferraz.vendas.login.data.remote
 
-import android.util.Log
 import br.com.dionataferraz.vendas.login.data.response.UserResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
