@@ -18,7 +18,8 @@
             android:exported="false" />
         <activity
             android:name=".TransactionsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomeActivity"/>
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
