@@ -9,10 +9,10 @@ class TransactionAdapter(private val listener: Listener) :
     RecyclerView.Adapter<TransactionViewHolder>() {
 
     interface Listener {
-        fun onItemClick(text: String)
+        fun onItemClick(transaction: TransactionModel)
     }
 
-    private val listItem: MutableList<String> = mutableListOf()
+    private val listItem: MutableList<TransactionModel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val binding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,18 +27,14 @@ class TransactionAdapter(private val listener: Listener) :
     override fun getItemCount(): Int {
         return listItem.size
     }
-    fun addNewList(list: List<String>) {
-        listItem.clear()
-        notifyItemRangeRemoved(0, listItem.size)
-        listItem.addAll(list)
-    }
 
-    fun addList(list: List<String>) {
+//    fun addItem(transaction: TransactionModel) {
+//        listItem.add(transaction)
+//    }
+
+    fun addList(list: MutableList<TransactionModel>) {
         listItem.addAll(list)
-    }
-    fun updateItem(item: String, position: Int) {
-        listItem[position] = item
-        notifyItemChanged(position)
+
     }
 
 }
@@ -46,12 +42,24 @@ class TransactionAdapter(private val listener: Listener) :
 class TransactionViewHolder(
     private val binding: ItemListBinding,
     private val listener: TransactionAdapter.Listener
-): RecyclerView.ViewHolder(binding.root) {
+) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(name: String) {
-        binding.tvName.text = name
-        binding.root.setOnClickListener {
-            listener.onItemClick(name)
+    fun bind(transaction: TransactionModel) {
+
+        fun Double.formats(qtd: Int) = "%.${qtd}f".format(this)
+
+        binding.tvDescription.text = transaction.description
+        binding.tvTime.text = transaction.date.hours.toString() + ":" + transaction.date.minutes.toString()
+        binding.tvValue.text = "R$${transaction.value.formats(2)}"
+
+        when (transaction.place) {
+            TransactionPlace.MARKET -> binding.ivIcon.setImageResource(R.drawable.mercado)
+            TransactionPlace.GAS -> binding.ivIcon.setImageResource(R.drawable.gasolina)
+            TransactionPlace.SOCIAL -> binding.ivIcon.setImageResource(R.drawable.social)
         }
+
+
+
     }
 }
