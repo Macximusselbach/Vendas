@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import br.com.dionataferraz.vendas.adapters.TransactionAdapter
 import br.com.dionataferraz.vendas.databinding.ActivityTransactionsBinding
-import java.util.*
 
 class TransactionsActivity : AppCompatActivity(), TransactionAdapter.Listener {
 
@@ -19,6 +18,7 @@ class TransactionsActivity : AppCompatActivity(), TransactionAdapter.Listener {
         super.onCreate(savedInstanceState)
 
         binding = ActivityTransactionsBinding.inflate(layoutInflater)
+        viewModel = TransactionsViewModel()
 
         val view = binding.root
         setContentView(view)

@@ -18,8 +18,8 @@ class TransactionsViewModel : ViewModel() {
     private val error: MutableLiveData<String> = MutableLiveData()
     val shouldShowError: LiveData<String> = error
 
-    private val transactions: MutableLiveData<List<TransactionModel>> = MutableLiveData()
-    val showTransactions: LiveData<List<TransactionModel>> = transactions
+    private val transactions: MutableLiveData<MutableList<TransactionModel>> = MutableLiveData()
+    val showTransactions: LiveData<MutableList<TransactionModel>> = transactions
 
     private val moshi = Moshi.Builder()
         .addLast(KotlinJsonAdapterFactory())
@@ -36,7 +36,7 @@ class TransactionsViewModel : ViewModel() {
 
     fun saveTransactionOnSP(sharedPreferences: SharedPreferences) {
 
-        val transactionsCreatedList = listOf(
+        val transactionsCreatedList = mutableListOf(
             TransactionModel(
                 date = Date(2022, 9, 21, 18, 13),
                 value = 10.00,
@@ -47,14 +47,14 @@ class TransactionsViewModel : ViewModel() {
             TransactionModel(
                 date = Date(2022, 9, 21, 18, 13),
                 value = 50.00,
-                description = "Mercado",
+                description = "Gasolina",
                 place = TransactionPlace.GAS
             ),
 
             TransactionModel(
                 date = Date(2022, 9, 21, 18, 13),
                 value = 10.00,
-                description = "Mercado",
+                description = "Mercadoocial",
                 place = TransactionPlace.SOCIAL
             )
         )
@@ -73,7 +73,7 @@ class TransactionsViewModel : ViewModel() {
 
         val transactionsGot = sharedPreferences.getString("Transactions", null)
 
-        transactions.value = moshiAdapter.fromJson(transactionsGot)
+        transactions.value = moshiAdapter.fromJson(transactionsGot)?.toMutableList()
 
     }
 

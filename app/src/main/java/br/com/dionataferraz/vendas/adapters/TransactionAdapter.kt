@@ -31,11 +31,11 @@ class TransactionAdapter(private val listener: Listener) :
         return listItem.size
     }
 
-    fun addItem(transaction: TransactionModel) {
-        listItem.add(transaction)
-    }
+//    fun addItem(transaction: TransactionModel) {
+//        listItem.add(transaction)
+//    }
 
-    fun addList(list: List<TransactionModel>) {
+    fun addList(list: MutableList<TransactionModel>) {
         listItem.addAll(list)
 
     }
@@ -48,17 +48,21 @@ class TransactionViewHolder(
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(transaciton: TransactionModel) {
+    fun bind(transaction: TransactionModel) {
 
-        binding.tvDescription.text = transaciton.description
-        binding.tvTime.text = transaciton.date.hours.toString() + ":" + transaciton.date.minutes.toString()
-        binding.tvValue.text = transaciton.value.toString()
+            fun Double.formats(qtd: Int) = "%.${qtd}f".format(this)
 
-        when(transaciton.place) {
-            TransactionPlace.MARKET -> binding.ivIcon.setImageResource(R.drawable.mercado)
-            TransactionPlace.GAS -> binding.ivIcon.setImageResource(R.drawable.gasolina)
-            TransactionPlace.SOCIAL -> binding.ivIcon.setImageResource(R.drawable.social)
-        }
+            binding.tvDescription.text = transaction.description
+            binding.tvTime.text = transaction.date.hours.toString() + ":" + transaction.date.minutes.toString()
+            binding.tvValue.text = "R$${transaction.value.formats(2)}"
+
+            when (transaction.place) {
+                TransactionPlace.MARKET -> binding.ivIcon.setImageResource(R.drawable.mercado)
+                TransactionPlace.GAS -> binding.ivIcon.setImageResource(R.drawable.gasolina)
+                TransactionPlace.SOCIAL -> binding.ivIcon.setImageResource(R.drawable.social)
+            }
+
+
 
     }
 }
