@@ -27,7 +27,7 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="20dp"
                 android:foregroundGravity="center"
-                android:src="@drawable/mercado"
+                tools:src="@drawable/mercado"
                 app:layout_constraintBottom_toTopOf="@id/guideline"
                 app:layout_constraintRight_toRightOf="parent" />
 
