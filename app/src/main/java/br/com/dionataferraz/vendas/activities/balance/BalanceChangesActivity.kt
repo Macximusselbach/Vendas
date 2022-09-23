@@ -10,7 +10,7 @@ class BalanceChangesActivity : AppCompatActivity() {
     private lateinit var viewModel: BalanceChangesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState) 
 
         binding = ActivityBalanceChangesBinding.inflate(layoutInflater)
         viewModel = BalanceChangesViewModel()
