@@ -24,8 +24,10 @@
     <string name="register">Registre-se</string>
     <string name="transactions">Transações</string>
     <string name="home_new_transaction">Nova operação</string>
-    <string name="home_bank_balance">Saldo</string>
+    <string name="home_bank_bt_see_operations">Extrato</string>
     <string name="home_balance_available">Saldo disponível</string>
     <string name="home_hello">Olá, %s</string>
     <string name="home_next_invoice">Próxima fatura</string>
+    <string name="deposit">Depositar</string>
+    <string name="withdraw">Sacar</string>
 </resources>
