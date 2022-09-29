@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas
+package br.com.dionataferraz.vendas.transactions
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

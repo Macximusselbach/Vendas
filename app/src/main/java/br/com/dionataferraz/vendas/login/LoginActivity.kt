@@ -56,14 +56,14 @@ class LoginActivity : AppCompatActivity() {
 
 
         CoroutineScope(Dispatchers.IO).launch {
-            database.DAO().insertUser(
+            database.userDao().insertUser(
                 UserEntity(
                     name = "Dionata Leonel",
                     email = "dionataferraz@gmail.com",
                     password = "123456",
                 )
             )
-            val users = database.DAO().getUser()
+            val users = database.userDao().getUser()
             Log.e("DAO", users.toString())
         }
     }

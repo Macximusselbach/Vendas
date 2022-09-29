@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas
+package br.com.dionataferraz.vendas.transactions
 
 import android.os.Bundle
 import android.widget.Toast
@@ -8,14 +8,23 @@ import br.com.dionataferraz.vendas.databinding.ActivityTransactionsBinding
 class TransactionsActivity : AppCompatActivity(), TransactionAdapter.Listener {
 
     private lateinit var binding: ActivityTransactionsBinding
+    private lateinit var viewModel: TransactionsViewModel
+
     private val adapter: TransactionAdapter by lazy {
         TransactionAdapter(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityTransactionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel = TransactionsViewModel()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setTitle("Transações")
+
         binding.button.setOnClickListener {
             adapter.updateItem(
                 "MUDOU AQUI", 6
