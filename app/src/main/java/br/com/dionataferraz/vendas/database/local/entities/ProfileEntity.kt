@@ -1,12 +1,13 @@
-package br.com.dionataferraz.vendas.activities.login.data.local
+package br.com.dionataferraz.vendas.database.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "userTable")
-data class UserEntity(
+data class ProfileEntity(
     val name: String,
-
+    val age: Int,
+    val gender: String,
     @PrimaryKey
     val email: String,
     val password: String,

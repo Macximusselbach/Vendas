@@ -1,11 +1,12 @@
 package br.com.dionataferraz.vendas.login.data.remote
 
+import br.com.dionataferraz.vendas.database.remote.RetrofitNetworkClient
 import br.com.dionataferraz.vendas.login.data.response.UserResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class LoginDataSource {
+class LoginRemoteDataSource {
 
     private val service = RetrofitNetworkClient.createNetworkClient().create(LoginAPI::class.java)
 

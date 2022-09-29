@@ -14,8 +14,8 @@ class LoginViewModel : ViewModel() {
         GetLoginUseCase()
     }
 
-    private val error: MutableLiveData<Boolean> = MutableLiveData(false)
-    val shouldShowError: LiveData<Boolean> = error
+    private val error: MutableLiveData<String> = MutableLiveData()
+    val shouldShowError: LiveData<String> = error
 
     private val home: MutableLiveData<Boolean> = MutableLiveData(false)
     val shouldShowHome: LiveData<Boolean> = home
@@ -36,7 +36,7 @@ class LoginViewModel : ViewModel() {
                 //Log.e("Login: ", user.get().toString())
 
             } else {
-                error.value = true
+                error.value = "true"
             }
         }
 

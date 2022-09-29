@@ -1,18 +1,20 @@
 package br.com.dionataferraz.vendas.activities.login.data.repository
 
+import br.com.dionataferraz.vendas.activities.login.data.local.LoginLocalDataSource
 import br.com.dionataferraz.vendas.login.data.remote.ErrorModel
-import br.com.dionataferraz.vendas.login.data.remote.LoginDataSource
+import br.com.dionataferraz.vendas.login.data.remote.LoginRemoteDataSource
 import br.com.dionataferraz.vendas.login.data.remote.Result
 import br.com.dionataferraz.vendas.login.data.response.UserResponse
 
 class LoginRepository {
 
-    private val remoteDataSource by lazy {
-        LoginDataSource()
+    private val localDataSource by lazy {
+        LoginLocalDataSource()
     }
 
-    suspend fun login(email: String, password: String) : Result<UserResponse, ErrorModel> {
-        return remoteDataSource.login(email = email, password = password)
+    suspend fun login(email: String, password: String) : String {
+         localDataSource.login(email = email, password = password)
+        return "a"
     }
 
 
