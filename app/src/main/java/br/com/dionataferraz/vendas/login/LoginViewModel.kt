@@ -22,19 +22,21 @@ class LoginViewModel : ViewModel() {
 
     fun login(email: String?, password: String?) {
         viewModelScope.launch {
-            if (email != null && password != null) {
-                val user = usecase.login(email = email, password = password)
+//            if (email != null && password != null) {
+//                val user = usecase.login(email = email, password = password)
+//
+//                if (user.get() != null) {
+//                    home.value = true
+//                } else {
+//                    error.value = true
+//                }
+//
+//                Log.e("login", user.get().toString())
+//            } else {
+//                error.value = true
+//            }
 
-                if (user.get() != null) {
-                    home.value = true
-                } else {
-                    error.value = true
-                }
-
-                Log.e("login", user.get().toString())
-            } else {
-                error.value = true
-            }
+            home.value = true
         }
     }
 

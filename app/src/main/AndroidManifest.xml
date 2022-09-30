@@ -18,16 +18,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ModifyBalanceActivity"
+            android:name=".transactions.ModifyBalanceActivity"
             android:exported="false"
             android:label="@string/title_activity_modify_balance"
-            android:theme="@style/Theme.Vendas.NoActionBar" />
+            android:parentActivityName=".HomeActivity"/>
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".transactions.TransactionsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomeActivity"/>
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />

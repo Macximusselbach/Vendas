@@ -3,16 +3,17 @@ package br.com.dionataferraz.vendas.transactions
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.dionataferraz.vendas.R
 import br.com.dionataferraz.vendas.databinding.ItemListBinding
 
 class TransactionAdapter(private val listener: Listener) :
     RecyclerView.Adapter<TransactionViewHolder>() {
 
     interface Listener {
-        fun onItemClick(text: String)
+        //fun onItemClick(transaction: TransactionModel)
     }
 
-    private val listItem: MutableList<String> = mutableListOf()
+    private val listItem: MutableList<TransactionModel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val binding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -28,17 +29,17 @@ class TransactionAdapter(private val listener: Listener) :
         return listItem.size
     }
 
-    fun addNewList(list: List<String>) {
+    fun addNewList(list: List<TransactionModel>) {
         listItem.clear()
         notifyItemRangeRemoved(0, listItem.size)
         listItem.addAll(list)
     }
 
-    fun addList(list: List<String>) {
+    fun addList(list: List<TransactionModel>) {
         listItem.addAll(list)
     }
 
-    fun updateItem(item: String, position: Int) {
+    fun updateItem(item: TransactionModel, position: Int) {
         listItem[position] = item
         notifyItemChanged(position)
     }
@@ -50,10 +51,19 @@ class TransactionViewHolder(
     private val listener: TransactionAdapter.Listener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(name: String) {
-        binding.tvName.text = name
-        binding.root.setOnClickListener {
-            listener.onItemClick(name)
+    fun bind(transaction: TransactionModel) {
+
+        fun Double.formats(qtd: Int) = "%.${qtd}f".format(this)
+
+        binding.tvOperation.text = transaction.operation
+        binding.tvDate.text = transaction.date
+        binding.tvValue.text = "R$${transaction.value.formats(2)}"
+
+        when (transaction.operation) {
+            "Deposit" -> binding.ivIcon.setImageResource(R.drawable.ic_baseline_attach_money_24)
+            "Withdraw" -> binding.ivIcon.setImageResource(R.drawable.ic_baseline_money_off_24)
         }
+
+
     }
 }

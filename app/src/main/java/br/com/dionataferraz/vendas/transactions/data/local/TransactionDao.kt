@@ -8,8 +8,8 @@ import androidx.room.Query
 interface TransactionDao {
 
     @Insert
-    fun insertTransaction(transactionEntity: TransactionEntity)
+    fun saveTransaction(transactionEntity: TransactionEntity)
 
     @Query("SELECT * FROM transactionTable")
-    fun getTransaction(): List<TransactionEntity>
+    fun getTransactions(): List<TransactionEntity>
 }

@@ -25,42 +25,22 @@ class TransactionsActivity : AppCompatActivity(), TransactionAdapter.Listener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle("Transações")
 
-        binding.button.setOnClickListener {
-            adapter.updateItem(
-                "MUDOU AQUI", 6
-            )
-/*            adapter.addNewList(
-                listOf(
-                    "Item 11",
-                    "Item 10",
-                    "Item 9"
-                )
-            )*/
+        viewModel.getTransactions()
+
+        viewModel.showTransactions.observe(this) { listToShow ->
+            binding.rcList.adapter = adapter
+            adapter.addList(listToShow)
+
         }
 
-        binding.rcList.adapter = adapter
-        adapter.addList(
-            listOf(
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5",
-                "Item 6",
-                "Item 7",
-                "Item 8",
-                "Item 9",
-                "Item 10",
-                "Item 11",
-            )
-        )
-    }
+        viewModel.shouldShowError.observe(this) { shouldShow ->
+            Toast.makeText(
+                this,
+                shouldShow,
+                Toast.LENGTH_LONG
+            ).show()
 
-    override fun onItemClick(text: String) {
-        Toast.makeText(
-            this,
-            text,
-            Toast.LENGTH_LONG
-        ).show()
+        }
+
     }
 }
