@@ -17,6 +17,7 @@ class TransactionLocalDataSource {
 
         return withContext(Dispatchers.IO) {
             val balanceToInsert = convertBalanceToEntity(balance)
+
             database.bankBalanceDao().insertTestValue(balanceToInsert)
 
         }
@@ -27,7 +28,6 @@ class TransactionLocalDataSource {
 
         return withContext(Dispatchers.IO) {
             try {
-                Log.e("------------", "ffgf" + database.bankBalanceDao().getBalance().balance.toString())
                 val balanceFromDb = database.bankBalanceDao().getBalance()
                 val convertedBalance = convertBalanceToModel(balanceFromDb)
 
@@ -46,7 +46,7 @@ class TransactionLocalDataSource {
         return withContext(Dispatchers.IO) {
             try {
                 val currentBalance = database.bankBalanceDao().getBalance()
-                val newBalance = BankBalanceEntity(currentBalance.balance - value)
+                val newBalance = BankBalanceEntity(currentBalance.balance + value)
 
                 database.bankBalanceDao().updateBalance(newBalance)
                 database.transactionDao().saveTransaction(TransactionEntity("Deposit", value, date))

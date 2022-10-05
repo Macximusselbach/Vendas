@@ -8,10 +8,10 @@ import androidx.lifecycle.viewModelScope
 import br.com.dionataferraz.vendas.transactions.domain.usecase.TransactionsUseCase
 import kotlinx.coroutines.launch
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel : ViewModel() {
 
-    private val balance: MutableLiveData<Double> = MutableLiveData()
-    val showBalance: LiveData<Double> = balance
+    private val balance: MutableLiveData<String> = MutableLiveData()
+    val showBalance: LiveData<String> = balance
 
     private val useCase by lazy {
         TransactionsUseCase()
@@ -19,16 +19,18 @@ class HomeViewModel: ViewModel() {
 
     fun getBalance() {
         viewModelScope.launch {
-             useCase.getBalance()
+            val balanceFromDb = useCase.getBalance()
 
-//            if (balanceFromDb?.balance > 0) {
-//                balance.value = balanceFromDb?.balance
-//
-//            } else {
-//                balance.value = 0.00
-//
-//            }
+            if (balanceFromDb.get()?.balance.toString()
+                    .isNullOrEmpty() || balanceFromDb.get()?.balance!! <= 0
+            ) {
+                balance.value = "0.00"
 
+            } else {
+                balance.value = balanceFromDb.get()?.balance.toString()
+
+
+            }
 
         }
     }

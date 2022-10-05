@@ -2,6 +2,7 @@ package br.com.dionataferraz.vendas.transactions
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import br.com.dionataferraz.vendas.databinding.ActivityModifyBalanceBinding
 import java.text.SimpleDateFormat
@@ -47,13 +48,6 @@ class ModifyBalanceActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
 
-            } else {
-                Toast.makeText(
-                    this,
-                    "Operação bem sucedida!",
-                    Toast.LENGTH_LONG
-                ).show()
-
             }
         }
 
@@ -62,7 +56,7 @@ class ModifyBalanceActivity : AppCompatActivity() {
     private fun getDateTime(): String {
         val dateFormat = SimpleDateFormat(
 
-            "dd/MM/yyyy HH:mm", Locale.ROOT
+            "dd/MM/yyyy - HH:mm", Locale.ROOT
         )
 
         val date = Date()

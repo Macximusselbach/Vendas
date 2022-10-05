@@ -12,7 +12,7 @@ class SplashViewModel : ViewModel() {
         TransactionsUseCase()
     }
 
-    fun creteTestBalance() {
+    fun createTestBalance() {
         viewModelScope.launch {
             useCase.insertInitialValue(BankBalanceModel(0.00))
 
