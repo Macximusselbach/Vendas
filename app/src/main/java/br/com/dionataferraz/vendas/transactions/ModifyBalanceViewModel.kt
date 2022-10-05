@@ -13,6 +13,9 @@ class ModifyBalanceViewModel : ViewModel() {
     private val error: MutableLiveData<String> = MutableLiveData()
     val shouldShowError: LiveData<String> = error
 
+    private val sucess: MutableLiveData<String> = MutableLiveData()
+    val shouldBack: LiveData<String> = sucess
+
     private val useCase by lazy {
         TransactionsUseCase()
     }
@@ -32,7 +35,7 @@ class ModifyBalanceViewModel : ViewModel() {
 
                 } else {
                     useCase.deposit(value, date)
-                    error.value = "Operação bem sucedida!"
+                    sucess.value = "Operação bem sucedida!"
 
                 }
 
@@ -59,7 +62,7 @@ class ModifyBalanceViewModel : ViewModel() {
 
                 } else {
                     useCase.withdraw(value, date)
-                    error.value = "Operação bem sucedida!"
+                    sucess.value = "Operação bem sucedida!"
 
                 }
             }

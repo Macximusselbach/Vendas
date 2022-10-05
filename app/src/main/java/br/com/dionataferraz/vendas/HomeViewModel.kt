@@ -1,6 +1,5 @@
 package br.com.dionataferraz.vendas
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,16 +18,14 @@ class HomeViewModel : ViewModel() {
 
     fun getBalance() {
         viewModelScope.launch {
-            val balanceFromDb = useCase.getBalance()
+            val balanceFromDb = useCase.getBalance().get()?.balance
 
-            if (balanceFromDb.get()?.balance.toString()
-                    .isNullOrEmpty() || balanceFromDb.get()?.balance!! <= 0
-            ) {
-                balance.value = "0.00"
+            if (balanceFromDb == null) {
+                balance.value = "Problemas ao carregar informações!"
 
             } else {
-                balance.value = balanceFromDb.get()?.balance.toString()
-
+                fun Double.formats(qtd: Int) = "%.${qtd}f".format(this)
+                balance.value = "R$ ${balanceFromDb.formats(2)}"
 
             }
 

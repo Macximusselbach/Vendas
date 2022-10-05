@@ -12,8 +12,8 @@ interface BankBalanceDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTestValue(bankBalanceEntity: BankBalanceEntity)
 
-    @Update(entity = BankBalanceEntity::class)
-    fun updateBalance(newBalance: BankBalanceEntity)
+    @Query("UPDATE balanceTable SET balance = :newBalance")
+    fun updateBalance(newBalance: Double)
 
     @Query("SELECT balance FROM balanceTable")
     fun getBalance(): BankBalanceEntity

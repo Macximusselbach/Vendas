@@ -20,7 +20,6 @@
         <activity
             android:name=".transactions.ModifyBalanceActivity"
             android:exported="false"
-            android:label="@string/title_activity_modify_balance"
             android:parentActivityName=".HomeActivity"/>
         <activity
             android:name=".HomeActivity"

@@ -10,6 +10,6 @@ interface TransactionDao {
     @Insert
     fun saveTransaction(transactionEntity: TransactionEntity)
 
-    @Query("SELECT * FROM transactionTable")
+    @Query("SELECT * FROM transactionTable ORDER BY date DESC")
     fun getTransactions(): List<TransactionEntity>
 }

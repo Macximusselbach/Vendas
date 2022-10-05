@@ -2,6 +2,7 @@ package br.com.dionataferraz.vendas
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import br.com.dionataferraz.vendas.databinding.ActivityHomeBinding
 import br.com.dionataferraz.vendas.transactions.ModifyBalanceActivity
@@ -26,8 +27,7 @@ class HomeActivity : AppCompatActivity() {
 
         }
 
-
-        binding.btTransactions.setOnClickListener {
+        binding.tvAccountBalance.setOnClickListener {
             val intent = Intent(App.context, TransactionsActivity::class.java)
             startActivity(intent)
 
@@ -37,5 +37,11 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(App.context, ModifyBalanceActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.getBalance()
     }
 }

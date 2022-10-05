@@ -48,7 +48,7 @@ class TransactionLocalDataSource {
                 val currentBalance = database.bankBalanceDao().getBalance()
                 val newBalance = BankBalanceEntity(currentBalance.balance + value)
 
-                database.bankBalanceDao().updateBalance(newBalance)
+                database.bankBalanceDao().updateBalance(newBalance.balance)
                 database.transactionDao().saveTransaction(TransactionEntity("Deposit", value, date))
 
                 val transaction = TransactionModel("Deposit", value, date)
@@ -68,7 +68,7 @@ class TransactionLocalDataSource {
                 val currentBalance = database.bankBalanceDao().getBalance()
                 val newBalance = BankBalanceEntity(currentBalance.balance - value)
 
-                database.bankBalanceDao().updateBalance(newBalance)
+                database.bankBalanceDao().updateBalance(newBalance.balance)
                 database.transactionDao().saveTransaction(TransactionEntity("Withdraw", value, date))
 
                 val transaction = TransactionModel("Withdraw", value, date)

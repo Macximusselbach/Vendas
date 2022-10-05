@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
 
         viewModel = SplashViewModel()
 
-        //viewModel.createTestBalance()
+        viewModel.createTestBalance()
 
         Handler().postDelayed({
             val intent = Intent(this, LoginActivity::class.java)

@@ -114,16 +114,5 @@
             app:layout_constraintStart_toStartOf="@id/new_purchase"
             app:layout_constraintEnd_toEndOf="@id/new_purchase" />
 
-        <Button
-            android:textAllCaps="false"
-            android:id="@+id/bt_transactions"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:text="Transações"
-            android:textSize="@dimen/text_size_14"
-            app:layout_constraintTop_toBottomOf="@id/bt_modify_balance"
-            app:layout_constraintStart_toStartOf="@id/bt_modify_balance"
-            app:layout_constraintEnd_toEndOf="@id/bt_modify_balance" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

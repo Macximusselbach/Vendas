@@ -1,9 +1,12 @@
 package br.com.dionataferraz.vendas.transactions
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import br.com.dionataferraz.vendas.App
+import br.com.dionataferraz.vendas.HomeActivity
 import br.com.dionataferraz.vendas.databinding.ActivityModifyBalanceBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,6 +41,21 @@ class ModifyBalanceActivity : AppCompatActivity() {
 
             viewModel.withdraw(value, date)
 
+        }
+
+        viewModel.shouldBack.observe(this) { shouldBack ->
+            if (shouldBack != null) {
+                Toast.makeText(
+                    this,
+                    shouldBack,
+                    Toast.LENGTH_LONG
+                ).show()
+
+                val intent = Intent(App.context, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            }
         }
 
         viewModel.shouldShowError.observe(this) { shouldShow ->
