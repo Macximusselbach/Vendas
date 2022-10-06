@@ -36,10 +36,7 @@
             android:exported="false"
             android:parentActivityName=".activities.home.HomeActivity" />
         <activity
-            android:name=".activities.TestandoProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name="br.com.dionataferraz.vendas.activities.profile.ProfileCreateActivity"
+            android:name=".activities.profile.ProfileCreateActivity"
             android:exported="false"
             android:parentActivityName=".activities.login.LoginActivity" />
         <activity
@@ -53,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="br.com.dionataferraz.vendas.activities.login.LoginActivity"
+            android:name=".activities.login.LoginActivity"
             android:exported="true" />
     </application>
 

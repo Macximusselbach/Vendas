@@ -1,8 +1,11 @@
 package br.com.dionataferraz.vendas.activities.profile.data.remote
 
+import android.util.Log
+import br.com.dionataferraz.vendas.database.ErrorModel
+import br.com.dionataferraz.vendas.database.Result
 import br.com.dionataferraz.vendas.activities.profile.ProfileModel
+import br.com.dionataferraz.vendas.activities.profile.data.local.ProfileLocalDataSource
 import br.com.dionataferraz.vendas.activities.profile.data.response.ProfileResponse
-import br.com.dionataferraz.vendas.database.local.VendasDatabase
 import br.com.dionataferraz.vendas.database.local.entities.ProfileEntity
 import br.com.dionataferraz.vendas.database.remote.RetrofitNetworkClient
 import kotlinx.coroutines.Dispatchers
@@ -12,20 +15,22 @@ import java.lang.Exception
 class CreateProfileRemoteDataSource {
 
     private val localDataBase by lazy {
-        VendasDatabase.getInstance()
+        ProfileLocalDataSource()
     }
 
     private val service =
         RetrofitNetworkClient.createNetworkClient().create(CreateProfileAPI::class.java)
 
-    suspend fun createProfile(profile: ProfileModel): Result<ProfileResponse, ErrorModel> {
+    suspend fun createProfile(profile: ProfileModel): Result<ProfileModel, ErrorModel> {
         return withContext(Dispatchers.IO) {
             try {
                 val profileResponse = service.createProfile(profile)
                 val profileEntity = convertResponseToEntity(profileResponse)
-                localDataBase.profileDao().insertProfileUser(profileEntity)
+                val profileModel = convertResponseToModel(profileResponse)
 
-                Result.Sucesss(profileResponse)
+                localDataBase.createProfile(profileEntity)
+
+                Result.Sucesss(profileModel)
 
             } catch (exception: Exception) {
                 Result.Error(ErrorModel)
@@ -57,17 +62,4 @@ class CreateProfileRemoteDataSource {
     }
 
 
-}
-
-object ErrorModel
-sealed class Result<out S, out E> {
-    data class Sucesss<S>(val value: S) : Result<S, Nothing>()
-    data class Error<E>(val value: E) : Result<Nothing, E>()
-
-    fun get(): S? {
-        return when (this) {
-            is Sucesss -> value
-            else -> null
-        }
-    }
 }

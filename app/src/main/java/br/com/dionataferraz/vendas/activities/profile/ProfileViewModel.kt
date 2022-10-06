@@ -1,6 +1,7 @@
 package br.com.dionataferraz.vendas.activities.profile
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,29 +19,16 @@ class ProfileViewModel : ViewModel() {
 
     private val error: MutableLiveData<String> = MutableLiveData()
     val shouldShowError: LiveData<String> = error
-    private val sucess: MutableLiveData<Boolean> = MutableLiveData()
+    private val sucess: MutableLiveData<Boolean> = MutableLiveData(false)
     val sucessSave: LiveData<Boolean> = sucess
 
-    fun createPerson(
+    suspend fun createPerson(
         name: String?,
-        age: String?,
         email: String?,
-        password: String?,
-        gender: String?
+        password: String?
     ) {
-        if (name.isNullOrBlank()
-            && age.isNullOrBlank()
-            && email.isNullOrBlank()
-            && password.isNullOrBlank()
-            && gender.isNullOrBlank()
-        ) {
-            error.value = "Preencha todos os campos!"
-
-        } else if (name.isNullOrBlank()) {
+        if (name.isNullOrBlank()) {
             error.value = "O campo nome é obrigatório!"
-
-        } else if (age.isNullOrBlank()) {
-            error.value = "O campo idade é obrigatório!"
 
         } else if (email.isNullOrBlank()) {
             error.value = "O campo email é obrigatório!"
@@ -48,20 +36,21 @@ class ProfileViewModel : ViewModel() {
         } else if (password.isNullOrBlank()) {
             error.value = "O campo senha é obrigatório!"
 
-        } else if (gender.isNullOrBlank()) {
-            error.value = "O campo gênero é obrigatório!"
-
         } else {
 
-            val profileModelCreated = ProfileModel(
+            val profileModel = ProfileModel(
                 name = name,
                 email = email,
                 password = password
             )
 
             viewModelScope.launch {
-                useCase.createProfile(profileModelCreated)
+                val apiResponse = useCase.createProfile(profileModel)
                 sucess.value = true
+
+                val saveDb = useCase.getProfileFromLocalDb().get()
+                Log.e("Salvo no local (pf) ", saveDb.toString())
+                Log.e("Salvo na api (pf)", apiResponse.get().toString())
 
             }
 

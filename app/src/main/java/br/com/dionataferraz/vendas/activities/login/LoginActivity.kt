@@ -20,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -44,8 +45,8 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.shouldShowHome.observe(this) { goHome ->
-            if (goHome) {
+        viewModel.shouldGoHome.observe(this) { shouldGoHome ->
+            if (shouldGoHome) {
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
 

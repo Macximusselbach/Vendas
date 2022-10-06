@@ -1,11 +1,30 @@
 package br.com.dionataferraz.vendas.activities.splashScreen
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.dionataferraz.vendas.activities.login.domain.useCase.LoginUseCase
+import androidx.lifecycle.viewModelScope
+import br.com.dionataferraz.vendas.activities.profile.domain.useCase.ProfileUseCase
+import kotlinx.coroutines.launch
 
 class SplashViewModel: ViewModel() {
 
     private val useCase by lazy {
-        LoginUseCase()
+        ProfileUseCase()
+    }
+
+    private val existsUser: MutableLiveData<Boolean> = MutableLiveData(false)
+    val shouldGoHome: LiveData<Boolean> = existsUser
+
+    suspend fun checkExistsProfile() {
+        viewModelScope.launch {
+            val savedProfile = useCase.getProfileFromLocalDb().get()
+
+            existsUser.value = savedProfile != null
+            Log.e("Salvo no local (splash)", savedProfile.toString())
+
+        }
+
     }
 }

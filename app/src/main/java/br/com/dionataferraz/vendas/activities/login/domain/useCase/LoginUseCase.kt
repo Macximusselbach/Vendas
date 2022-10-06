@@ -1,8 +1,8 @@
 package br.com.dionataferraz.vendas.activities.login.domain.useCase
 
 import br.com.dionataferraz.vendas.activities.login.data.repository.LoginRepository
-import br.com.dionataferraz.vendas.login.data.remote.ErrorModel
-import br.com.dionataferraz.vendas.login.data.remote.Result
+import br.com.dionataferraz.vendas.database.ErrorModel
+import br.com.dionataferraz.vendas.database.Result
 import br.com.dionataferraz.vendas.login.data.response.LoginUserResponse
 
 class LoginUseCase {

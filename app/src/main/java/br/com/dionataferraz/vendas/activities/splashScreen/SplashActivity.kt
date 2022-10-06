@@ -5,7 +5,11 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import br.com.dionataferraz.vendas.R
+import br.com.dionataferraz.vendas.activities.home.HomeActivity
 import br.com.dionataferraz.vendas.activities.login.LoginActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,10 +21,34 @@ class SplashActivity : AppCompatActivity() {
 
         viewModel = SplashViewModel()
 
-        Handler().postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 3000)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.checkExistsProfile()
+
+        }
+
+
+        viewModel.shouldGoHome.observe(this) { shouldGoHome ->
+            if (shouldGoHome) {
+                Handler().postDelayed({
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    finish()
+
+                }, 5000)
+
+
+            } else {
+                Handler().postDelayed({
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+
+                }, 5000)
+
+
+            }
+        }
+
     }
 }

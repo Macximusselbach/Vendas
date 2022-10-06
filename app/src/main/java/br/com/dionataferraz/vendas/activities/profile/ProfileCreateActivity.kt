@@ -7,9 +7,13 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.dionataferraz.vendas.activities.home.HomeActivity
+import br.com.dionataferraz.vendas.activities.login.LoginActivity
 import br.com.dionataferraz.vendas.databinding.ActivityProfileCreateBinding
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class ProfileCreateActivity : AppCompatActivity() {
@@ -34,19 +38,21 @@ class ProfileCreateActivity : AppCompatActivity() {
 
         binding.pfSaveButton.setOnClickListener {
 
-            val radioGroup: RadioGroup
-            radioGroup = binding.radioGroup
-            val radioButtonSelected: Int = radioGroup.checkedRadioButtonId
-            val radioButton: RadioButton = findViewById(radioButtonSelected)
+//            val radioGroup: RadioGroup
+//            radioGroup = binding.radioGroup
+//            val radioButtonSelected: Int = radioGroup.checkedRadioButtonId
+//            val radioButton: RadioButton = findViewById(radioButtonSelected)
 
             val name = binding.tvName.text.toString()
-            val age = binding.tvAge.text.toString()
+//            val age = binding.tvAge.text.toString()
             val email = binding.tvEmail.text.toString()
             val password = binding.tvPassword.text.toString()
-            val gender = radioButton.text.toString()
+//            val gender = radioButton.text.toString()
 
-            viewModel.createPerson(name, age, email, password, gender)
+            CoroutineScope(Dispatchers.IO).launch {
+                viewModel.createPerson(name, email, password)
 
+            }
         }
 
         binding.pfClearButton.setOnClickListener {
@@ -76,7 +82,7 @@ class ProfileCreateActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
 
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             }

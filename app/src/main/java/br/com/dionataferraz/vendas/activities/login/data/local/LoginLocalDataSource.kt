@@ -1,9 +1,8 @@
 package br.com.dionataferraz.vendas.activities.login.data.local
 
+import br.com.dionataferraz.vendas.database.ErrorModel
+import br.com.dionataferraz.vendas.database.Result
 import br.com.dionataferraz.vendas.database.local.VendasDatabase
-import br.com.dionataferraz.vendas.login.data.remote.ErrorModel
-import br.com.dionataferraz.vendas.login.data.remote.Result
-import br.com.dionataferraz.vendas.login.data.response.LoginUserResponse
 
 class LoginLocalDataSource {
 
