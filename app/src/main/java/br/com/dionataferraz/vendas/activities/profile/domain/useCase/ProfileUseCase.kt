@@ -18,7 +18,6 @@ class ProfileUseCase {
     }
 
     suspend fun getProfileFromLocalDb(): Result<ProfileModel, ErrorModel> {
-        Log.e("Chegou aqui (puc)", "b")
         return repository.getProfileFromLocalDb()
 
     }

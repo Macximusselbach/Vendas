@@ -26,14 +26,6 @@ class TransactionsActivity : AppCompatActivity(), TransactionAdapter.Listener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle("Transações")
 
-        val sharedPreferences = getSharedPreferences(
-            "Transactions",
-            MODE_PRIVATE
-        )
-
-        viewModel.saveTransactionOnSP(sharedPreferences)
-        viewModel.getTransactionsOnSP(sharedPreferences)
-
         viewModel.showTransactions.observe(this) { listToShow ->
 
             binding.rcList.adapter = adapter

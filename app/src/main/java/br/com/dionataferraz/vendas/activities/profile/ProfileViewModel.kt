@@ -27,34 +27,35 @@ class ProfileViewModel : ViewModel() {
         email: String?,
         password: String?
     ) {
-        if (name.isNullOrBlank()) {
-            error.value = "O campo nome é obrigatório!"
 
-        } else if (email.isNullOrBlank()) {
-            error.value = "O campo email é obrigatório!"
+            if (name.isNullOrBlank()) {
+                error.value = "O campo nome é obrigatório!"
 
-        } else if (password.isNullOrBlank()) {
-            error.value = "O campo senha é obrigatório!"
+            } else if (email.isNullOrBlank()) {
+                error.value = "O campo email é obrigatório!"
 
-        } else {
+            } else if (password.isNullOrBlank()) {
+                error.value = "O campo senha é obrigatório!"
 
-            val profileModel = ProfileModel(
-                name = name,
-                email = email,
-                password = password
-            )
+            } else {
 
-            viewModelScope.launch {
-                val apiResponse = useCase.createProfile(profileModel)
+                val profileModel = ProfileModel(
+                    name = name,
+                    email = email,
+                    password = password
+                )
+
+                viewModelScope.launch {
+
+                val apiResponse = useCase.createProfile(profileModel).get()
                 sucess.value = true
 
                 val saveDb = useCase.getProfileFromLocalDb().get()
                 Log.e("Salvo no local (pf) ", saveDb.toString())
-                Log.e("Salvo na api (pf)", apiResponse.get().toString())
+                Log.e("Salvo na api (pf)", apiResponse.toString())
 
             }
 
         }
     }
-
 }

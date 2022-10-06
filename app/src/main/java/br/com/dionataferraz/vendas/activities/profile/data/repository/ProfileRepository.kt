@@ -25,7 +25,6 @@ class ProfileRepository {
     }
 
     suspend fun getProfileFromLocalDb(): Result<ProfileModel, ErrorModel> {
-        Log.e("Chegou aqui (pr)", "a")
         return localDataSource.getProfileFromLocalDb()
 
     }

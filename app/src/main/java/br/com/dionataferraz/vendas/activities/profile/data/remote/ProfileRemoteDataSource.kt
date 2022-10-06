@@ -18,13 +18,14 @@ class CreateProfileRemoteDataSource {
         ProfileLocalDataSource()
     }
 
-    private val service =
-        RetrofitNetworkClient.createNetworkClient().create(CreateProfileAPI::class.java)
+    private val service = RetrofitNetworkClient.createNetworkClient().create(CreateProfileAPI::class.java)
 
     suspend fun createProfile(profile: ProfileModel): Result<ProfileModel, ErrorModel> {
         return withContext(Dispatchers.IO) {
             try {
                 val profileResponse = service.createProfile(profile)
+                Log.e("Response api ", profileResponse.toString())
+
                 val profileEntity = convertResponseToEntity(profileResponse)
                 val profileModel = convertResponseToModel(profileResponse)
 
@@ -44,6 +45,7 @@ class CreateProfileRemoteDataSource {
 
     private fun convertResponseToEntity(profileToConvert: ProfileResponse): ProfileEntity {
         return ProfileEntity(
+            profileToConvert.id,
             profileToConvert.name,
             profileToConvert.email,
             profileToConvert.password

@@ -14,14 +14,17 @@ class ProfileLocalDataSource {
 
     private val dataBase by lazy {
         VendasDatabase.getInstance()
-    }
 
+    }
 
     suspend fun createProfile(profile: ProfileEntity): Result<ProfileModel, ErrorModel> {
         return withContext(Dispatchers.IO) {
             try {
-                dataBase.profileDao().insertProfileUser(profile)
-                val profileModel = convertEntityToModel(listOf(profile))
+                Log.e("Chegou aqui", "fun de insert")
+                val salvou = dataBase.profileDao().insertProfileUser(profile)
+                Log.e("Realmente salvou ", salvou.toString())
+
+                val profileModel = convertEntityToModel(profile)
 
                 Result.Sucesss(profileModel)
 
@@ -36,9 +39,9 @@ class ProfileLocalDataSource {
     suspend fun getProfileFromLocalDb(): Result<ProfileModel, ErrorModel> {
         return withContext(Dispatchers.IO) {
             try {
-                Log.e("Chegou aqui (plds)", "@")
+                Log.e("Chegou aqui (plds)", "entrou na fun de get")
                 val profileEntity = dataBase.profileDao().getProfile()
-                Log.e("Chegou aqui (plds)", profileEntity[0].toString())
+                Log.e("Realmente pegou", profileEntity.toString())
 
                 val profileModel = convertEntityToModel(profileEntity)
 
@@ -52,11 +55,11 @@ class ProfileLocalDataSource {
 
     }
 
-    private fun convertEntityToModel(profileToConvert: List<ProfileEntity>): ProfileModel {
+    private fun convertEntityToModel(profileToConvert: ProfileEntity): ProfileModel {
         return ProfileModel(
-            profileToConvert[0].name,
-            profileToConvert[0].email,
-            profileToConvert[0].password,
+            profileToConvert.name,
+            profileToConvert.email,
+            profileToConvert.password,
         )
 
     }
