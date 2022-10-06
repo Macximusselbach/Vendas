@@ -28,18 +28,20 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.registerButton.setOnClickListener {
+        binding.btRegister.setOnClickListener {
             val intent = Intent(this, ProfileCreateActivity::class.java)
             startActivity(intent)
         }
 
         binding.btLogin.setOnClickListener {
 
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
+            CoroutineScope(Dispatchers.IO).launch {
 
-            viewModel.login(email = email, password = password)
+                val email = binding.etEmail.text.toString()
+                val password = binding.etPassword.text.toString()
 
+                viewModel.login(email = email, password = password)
+            }
         }
 
         viewModel.shouldShowHome.observe(this) { goHome ->
@@ -65,29 +67,6 @@ class LoginActivity : AppCompatActivity() {
                 )
             }
         }
-
-//        fun getDateTime(): String {
-//            val dateFormat = SimpleDateFormat(
-//
-//                "dd/MM/yyyy HH:mm", Locale.ROOT)
-//
-//            val date = Date()
-//
-//            return dateFormat.format(date)
-//
-//        }
-//
-//        CoroutineScope(Dispatchers.IO).launch {
-//            database.transactionDao().insertTransaction(
-//                TransactionEntity(
-//                    operation = "deposit",
-//                    value = 10.0,
-//                    date = getDateTime()
-//                )
-//            )
-//
-//            val transactions = database.transactionDao().getTransactions()
-//            Log.e("TransactionDao", transactions.toString())
 
     }
 }

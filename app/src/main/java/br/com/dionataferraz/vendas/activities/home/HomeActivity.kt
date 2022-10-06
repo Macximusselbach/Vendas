@@ -12,11 +12,13 @@ import br.com.dionataferraz.vendas.databinding.ActivityHomeBinding
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
+        viewModel = HomeViewModel()
 
         val view = binding.root
         setContentView(view)

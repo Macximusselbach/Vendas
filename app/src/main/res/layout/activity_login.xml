@@ -67,27 +67,29 @@
             app:layout_constraintTop_toBottomOf="@+id/ti_password" />
 
         <TextView
-            android:id="@+id/register_text"
+            android:id="@+id/tv_new_here"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="@string/new_user"
-            android:textSize="15sp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginBottom="24dp"
+            android:text="@string/new_here"
+            android:textSize="@dimen/text_size_16"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintEnd_toStartOf="@+id/bt_register"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/register_button"
+            android:id="@+id/bt_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="24dp"
             android:text="@string/register"
-            android:textColor="@color/purple_500"
-            android:textSize="15sp"
+            android:textColor="@color/purple_700"
+            android:textSize="@dimen/text_size_18"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/register_text" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_new_here" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

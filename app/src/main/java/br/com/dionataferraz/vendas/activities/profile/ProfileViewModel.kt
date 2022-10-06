@@ -4,14 +4,22 @@ package br.com.dionataferraz.vendas.activities.profile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import br.com.dionataferraz.vendas.activities.profile.domain.useCase.ProfileUseCase
+import kotlinx.coroutines.launch
 
 
 class ProfileViewModel : ViewModel() {
 
+    private val useCase by lazy {
+        ProfileUseCase()
+    }
+
+
     private val error: MutableLiveData<String> = MutableLiveData()
     val shouldShowError: LiveData<String> = error
-    private val personModel: MutableLiveData<PersonModel> = MutableLiveData()
-    val personModelLiveData: LiveData<PersonModel> = personModel
+    private val sucess: MutableLiveData<Boolean> = MutableLiveData()
+    val sucessSave: LiveData<Boolean> = sucess
 
     fun createPerson(
         name: String?,
@@ -45,15 +53,17 @@ class ProfileViewModel : ViewModel() {
 
         } else {
 
-            val personModelCreated = PersonModel(
+            val profileModelCreated = ProfileModel(
                 name = name,
-                age = age,
                 email = email,
-                password = password,
-                gender = gender
+                password = password
             )
 
-            personModel.value = personModelCreated
+            viewModelScope.launch {
+                useCase.createProfile(profileModelCreated)
+                sucess.value = true
+
+            }
 
         }
     }

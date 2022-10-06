@@ -12,6 +12,6 @@ interface ProfileDao {
     fun insertProfileUser(userEntity: ProfileEntity)
 
     @Query("SELECT * FROM userTable")
-    fun getUsers(): List<ProfileEntity>
+    fun getProfile(): ProfileEntity
 
 }

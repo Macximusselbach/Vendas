@@ -29,13 +29,8 @@ class ProfileCreateActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle("Home")
 
-        val sharedPreferences = getSharedPreferences(
-            "Profiles",
-            MODE_PRIVATE
-        )
-
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-        val adapter = moshi.adapter(PersonModel::class.java)
+        val adapter = moshi.adapter(ProfileModel::class.java)
 
         binding.pfSaveButton.setOnClickListener {
 
@@ -52,25 +47,11 @@ class ProfileCreateActivity : AppCompatActivity() {
 
             viewModel.createPerson(name, age, email, password, gender)
 
-            viewModel.personModelLiveData.observe(this) { person ->
-
-                val edit = sharedPreferences.edit()
-
-                val personSave = adapter.toJson(person)
-                edit.putString("Person", personSave)
-                edit.apply()
-
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-
         }
 
         binding.pfClearButton.setOnClickListener {
 
             clearFields()
-            clearSharedPreferences()
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
@@ -84,12 +65,20 @@ class ProfileCreateActivity : AppCompatActivity() {
                     shouldShow,
                     Toast.LENGTH_LONG
                 ).show()
-            } else {
+            }
+        }
+
+        viewModel.sucessSave.observe(this) { sucess ->
+            if (sucess) {
                 Toast.makeText(
                     this,
                     "Perfil criado com sucesso!",
                     Toast.LENGTH_LONG
-                )
+                ).show()
+
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
     }
@@ -101,15 +90,6 @@ class ProfileCreateActivity : AppCompatActivity() {
         binding.tvPassword.text = null
         binding.radioGroup.clearCheck()
 
-    }
-
-    private fun clearSharedPreferences() {
-        val sharedPreferences = getSharedPreferences(
-            "Profile",
-            MODE_PRIVATE
-        )
-
-        sharedPreferences.edit().clear().apply()
     }
 
 }

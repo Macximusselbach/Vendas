@@ -30,4 +30,5 @@
     <string name="home_next_invoice">Próxima fatura</string>
     <string name="deposit">Depositar</string>
     <string name="withdraw">Sacar</string>
+    <string name="new_here">Novo por aqui?</string>
 </resources>
