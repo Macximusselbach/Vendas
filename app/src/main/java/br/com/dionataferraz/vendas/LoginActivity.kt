@@ -20,19 +20,37 @@ class LoginActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.btLogin.setOnClickListener {
-            viewModel.login(null, null)
-            val intent  = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+
+            viewModel.login(email, password)
+
         }
 
         viewModel.shouldShowError.observe(this) { shouldShow ->
-            if (shouldShow){
+            if (shouldShow != null){
                 Toast.makeText(
                     this,
-                    "Deu ruim",
+                    shouldShow,
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Login realizado",
                     Toast.LENGTH_LONG
                 ).show()
             }
         }
+
+        viewModel.shouldShowHome.observe(this) { goHome ->
+            if (goHome) {
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+
+            }
+        }
+
     }
 }
