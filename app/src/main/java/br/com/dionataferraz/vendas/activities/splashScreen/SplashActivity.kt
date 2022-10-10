@@ -3,13 +3,11 @@ package br.com.dionataferraz.vendas.activities.splashScreen
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import br.com.dionataferraz.vendas.R
 import br.com.dionataferraz.vendas.activities.home.HomeActivity
 import br.com.dionataferraz.vendas.activities.login.LoginActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
 
@@ -19,14 +17,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        Log.e("SplashActivity", "SplashActivity")
+
         viewModel = SplashViewModel()
 
-
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.checkExistsProfile()
-
-        }
-
+        viewModel.checkExistsProfile()
 
         viewModel.shouldGoHome.observe(this) { shouldGoHome ->
             if (shouldGoHome) {
@@ -35,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
 
-                }, 5000)
+                }, 3000)
 
 
             } else {
@@ -44,7 +39,7 @@ class SplashActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
 
-                }, 5000)
+                }, 3000)
 
 
             }

@@ -13,6 +13,7 @@ class ProfileUseCase {
     }
 
     suspend fun createProfile(profile: ProfileModel): Result<ProfileModel, ErrorModel> {
+        Log.e("Chegou aqui (pfl uc)", profile.toString())
         return repository.createProfile(profile)
 
     }

@@ -4,9 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import br.com.dionataferraz.vendas.activities.account.AccountCreateActivity
-import br.com.dionataferraz.vendas.activities.balance.BalanceChangesActivity
-import br.com.dionataferraz.vendas.activities.balance.ChangeBalanceActivity
 import br.com.dionataferraz.vendas.activities.transactions.TransactionsActivity
+import br.com.dionataferraz.vendas.activities.transactions.TransactionsCreateActivity
 import br.com.dionataferraz.vendas.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -37,13 +36,8 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btOperations.setOnClickListener {
-            val intent = Intent(this, BalanceChangesActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btNewOperation.setOnClickListener {
-            val intent = Intent(this, ChangeBalanceActivity::class.java)
+        binding.btNewTransaction.setOnClickListener {
+            val intent = Intent(this, TransactionsCreateActivity::class.java)
             startActivity(intent)
         }
 

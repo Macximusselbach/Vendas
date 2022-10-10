@@ -9,9 +9,9 @@ import br.com.dionataferraz.vendas.database.local.entities.ProfileEntity
 interface ProfileDao {
 
     @Insert
-    fun insertProfileUser(userEntity: ProfileEntity)
+    suspend fun insert(profileEntity: ProfileEntity)
 
-    @Query("SELECT name, email, password FROM userTable")
-    fun getProfile(): ProfileEntity
+    @Query("SELECT * FROM userTable")
+    suspend fun getProfile(): ProfileEntity
 
 }

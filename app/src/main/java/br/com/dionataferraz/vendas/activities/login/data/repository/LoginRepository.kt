@@ -1,6 +1,7 @@
 package br.com.dionataferraz.vendas.activities.login.data.repository
 
-import br.com.dionataferraz.vendas.activities.login.data.local.LoginLocalDataSource
+import android.util.Log
+import br.com.dionataferraz.vendas.activities.profile.data.local.ProfileLocalDataSource
 import br.com.dionataferraz.vendas.database.ErrorModel
 import br.com.dionataferraz.vendas.database.Result
 import br.com.dionataferraz.vendas.login.data.remote.LoginRemoteDataSource
@@ -8,8 +9,8 @@ import br.com.dionataferraz.vendas.login.data.response.LoginUserResponse
 
 class LoginRepository {
 
-    private val localDataSource by lazy {
-        LoginLocalDataSource()
+    private val profileLocalDataSource by lazy {
+       ProfileLocalDataSource()
     }
 
     private val remoteDataSource by lazy {
@@ -17,9 +18,16 @@ class LoginRepository {
     }
 
     suspend fun login(email: String, password: String): Result<LoginUserResponse, ErrorModel> {
-        return remoteDataSource.login(email = email, password = password)
+        val response = remoteDataSource.login(email = email, password = password)
+        Log.e("aaaa", response.toString())
+        val profileEntity = profileLocalDataSource.convertResponseToEntity(response.get()!!)
 
+        Log.e("aaaa", profileEntity.toString())
+        profileLocalDataSource.createProfile(profileEntity)
+
+        return response
     }
+
 
 
 }

@@ -5,7 +5,7 @@ import br.com.dionataferraz.vendas.database.ErrorModel
 import br.com.dionataferraz.vendas.database.Result
 import br.com.dionataferraz.vendas.activities.profile.ProfileModel
 import br.com.dionataferraz.vendas.activities.profile.data.local.ProfileLocalDataSource
-import br.com.dionataferraz.vendas.activities.profile.data.remote.CreateProfileRemoteDataSource
+import br.com.dionataferraz.vendas.activities.profile.data.remote.ProfileRemoteDataSource
 
 
 class ProfileRepository {
@@ -15,11 +15,12 @@ class ProfileRepository {
     }
 
     private val remoteDataSource by lazy {
-        CreateProfileRemoteDataSource()
+        ProfileRemoteDataSource()
 
     }
 
     suspend fun createProfile(profile: ProfileModel): Result<ProfileModel, ErrorModel> {
+        Log.e("Chegou aqui (pfl repo)", profile.toString())
         return remoteDataSource.createProfile(profile)
 
     }

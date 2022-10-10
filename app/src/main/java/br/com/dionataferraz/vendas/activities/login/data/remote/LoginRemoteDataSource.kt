@@ -1,7 +1,10 @@
 package br.com.dionataferraz.vendas.login.data.remote
 
+import android.util.Log
+import br.com.dionataferraz.vendas.activities.profile.ProfileModel
 import br.com.dionataferraz.vendas.database.ErrorModel
 import br.com.dionataferraz.vendas.database.Result
+import br.com.dionataferraz.vendas.database.local.entities.ProfileEntity
 import br.com.dionataferraz.vendas.database.remote.RetrofitNetworkClient
 import br.com.dionataferraz.vendas.login.data.response.LoginUserResponse
 import kotlinx.coroutines.Dispatchers
@@ -16,12 +19,14 @@ class LoginRemoteDataSource {
         return withContext(Dispatchers.IO){
             try {
                 val user = service.login(email, password)
-                Result.Sucesss(user)
+                Result.Success(user)
 
             } catch (exception: Exception) {
+                Log.e("login remote ds", "exception", exception)
                 Result.Error(ErrorModel)
 
             }
         }
     }
+
 }

@@ -56,11 +56,7 @@ class ProfileCreateActivity : AppCompatActivity() {
         }
 
         binding.pfClearButton.setOnClickListener {
-
             clearFields()
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
 
         }
 
@@ -74,8 +70,8 @@ class ProfileCreateActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.sucessSave.observe(this) { sucess ->
-            if (sucess) {
+        viewModel.successSave.observe(this) { success ->
+            if (success) {
                 Toast.makeText(
                     this,
                     "Perfil criado com sucesso!",

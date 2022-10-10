@@ -4,7 +4,10 @@
     <string name="account_name">Nome da conta</string>
     <string name="age">Idade</string>
     <string name="email">Email</string>
+    <string name="description">Descrição</string>
     <string name="password">Senha</string>
+    <string name="place">Local</string>
+    <string name="value">Valor</string>
     <string name="login">Login</string>
     <string name="gender">Gênero</string>
     <string name="male">Masculino</string>
@@ -23,7 +26,7 @@
     <string name="new_user">Novo por aqui?</string>
     <string name="register">Registre-se</string>
     <string name="transactions">Transações</string>
-    <string name="home_new_transaction">Nova operação</string>
+    <string name="home_new_transaction">Nova transação</string>
     <string name="home_bank_bt_see_operations">Extrato</string>
     <string name="home_balance_available">Saldo disponível</string>
     <string name="home_hello">Olá, %s</string>

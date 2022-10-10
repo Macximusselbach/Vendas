@@ -36,13 +36,10 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btLogin.setOnClickListener {
 
-            CoroutineScope(Dispatchers.IO).launch {
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
 
-                val email = binding.etEmail.text.toString()
-                val password = binding.etPassword.text.toString()
-
-                viewModel.login(email = email, password = password)
-            }
+            viewModel.login(email = email, password = password)
         }
 
         viewModel.shouldGoHome.observe(this) { shouldGoHome ->

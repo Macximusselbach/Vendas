@@ -20,7 +20,7 @@ class ProfileViewModel : ViewModel() {
     private val error: MutableLiveData<String> = MutableLiveData()
     val shouldShowError: LiveData<String> = error
     private val sucess: MutableLiveData<Boolean> = MutableLiveData(false)
-    val sucessSave: LiveData<Boolean> = sucess
+    val successSave: LiveData<Boolean> = sucess
 
     suspend fun createPerson(
         name: String?,
@@ -47,12 +47,12 @@ class ProfileViewModel : ViewModel() {
 
                 viewModelScope.launch {
 
-                val apiResponse = useCase.createProfile(profileModel).get()
+                val apiResponse = useCase.createProfile(profileModel)
                 sucess.value = true
 
-                val saveDb = useCase.getProfileFromLocalDb().get()
-                Log.e("Salvo no local (pf) ", saveDb.toString())
-                Log.e("Salvo na api (pf)", apiResponse.toString())
+                val saveDb = useCase.getProfileFromLocalDb()
+                Log.e("Salvo no local (pfl) ", saveDb.get().toString())
+                Log.e("Salvo na api (pfl)", apiResponse.get().toString())
 
             }
 

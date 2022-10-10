@@ -12,11 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class CreateProfileRemoteDataSource {
-
-    private val localDataBase by lazy {
-        ProfileLocalDataSource()
-    }
+class ProfileRemoteDataSource {
 
     private val service = RetrofitNetworkClient.createNetworkClient().create(CreateProfileAPI::class.java)
 
@@ -24,14 +20,9 @@ class CreateProfileRemoteDataSource {
         return withContext(Dispatchers.IO) {
             try {
                 val profileResponse = service.createProfile(profile)
-                Log.e("Response api ", profileResponse.toString())
-
-                val profileEntity = convertResponseToEntity(profileResponse)
                 val profileModel = convertResponseToModel(profileResponse)
 
-                localDataBase.createProfile(profileEntity)
-
-                Result.Sucesss(profileModel)
+                Result.Success(profileModel)
 
             } catch (exception: Exception) {
                 Result.Error(ErrorModel)
@@ -41,18 +32,6 @@ class CreateProfileRemoteDataSource {
 
 
     }
-
-
-    private fun convertResponseToEntity(profileToConvert: ProfileResponse): ProfileEntity {
-        return ProfileEntity(
-            profileToConvert.id,
-            profileToConvert.name,
-            profileToConvert.email,
-            profileToConvert.password
-        )
-
-    }
-
 
     private fun convertResponseToModel(profileToConvert: ProfileResponse): ProfileModel {
         return ProfileModel(

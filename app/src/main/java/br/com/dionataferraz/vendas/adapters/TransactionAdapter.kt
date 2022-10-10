@@ -53,13 +53,13 @@ class TransactionViewHolder(
             fun Double.formats(qtd: Int) = "%.${qtd}f".format(this)
 
             binding.tvDescription.text = transaction.description
-            binding.tvTime.text = transaction.date.hours.toString() + ":" + transaction.date.minutes.toString()
+            binding.tvPlace.text = transaction.place.toString()
             binding.tvValue.text = "R$${transaction.value.formats(2)}"
 
             when (transaction.place) {
                 TransactionPlace.MARKET -> binding.ivIcon.setImageResource(R.drawable.mercado)
-                TransactionPlace.GAS -> binding.ivIcon.setImageResource(R.drawable.gasolina)
-                TransactionPlace.SOCIAL -> binding.ivIcon.setImageResource(R.drawable.social)
+                TransactionPlace.GAS_STATION  -> binding.ivIcon.setImageResource(R.drawable.gasolina)
+                TransactionPlace.PUB -> binding.ivIcon.setImageResource(R.drawable.social)
             }
 
 

@@ -21,7 +21,7 @@ class LoginViewModel : ViewModel() {
     private val home: MutableLiveData<Boolean> = MutableLiveData(false)
     val shouldGoHome: LiveData<Boolean> = home
 
-    suspend fun login(email: String?, password: String?) {
+    fun login(email: String?, password: String?) {
         viewModelScope.launch {
 
             if (email.isNullOrEmpty()) {
@@ -34,6 +34,7 @@ class LoginViewModel : ViewModel() {
                 val user = useCase.login(email, password)
 
                 if (user.get() != null) {
+                    Log.e("Fez login como", user.toString())
                     home.value = true
 
                 } else {

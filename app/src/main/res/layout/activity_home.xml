@@ -80,7 +80,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_credit_card" />
 
         <Button
-            android:id="@+id/bt_new_operation"
+            android:id="@+id/bt_new_transaction"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginTop="40dp"

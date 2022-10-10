@@ -17,12 +17,13 @@ class SplashViewModel: ViewModel() {
     private val existsUser: MutableLiveData<Boolean> = MutableLiveData(false)
     val shouldGoHome: LiveData<Boolean> = existsUser
 
-    suspend fun checkExistsProfile() {
+    fun checkExistsProfile() {
+        Log.e("Salvo no local (splash)", "chechExistsProfile")
         viewModelScope.launch {
-            val savedProfile = useCase.getProfileFromLocalDb().get()
+            val savedProfile = useCase.getProfileFromLocalDb()
+            Log.e("Salvo no local (splash)", savedProfile.get().toString())
+            existsUser.value = savedProfile.get() != null
 
-            existsUser.value = savedProfile != null
-            Log.e("Salvo no local (splash)", savedProfile.toString())
 
         }
 
