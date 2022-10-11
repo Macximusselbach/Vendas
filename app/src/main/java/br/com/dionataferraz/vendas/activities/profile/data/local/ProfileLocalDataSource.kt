@@ -24,12 +24,10 @@ class ProfileLocalDataSource {
     suspend fun createProfile(profile: ProfileEntity): Result<ProfileModel, ErrorModel> {
         return withContext(Dispatchers.IO) {
             try {
-                Log.e("createProfile", profile.toString())
                 dataBase.profileDao().insert(profile)
 
                 val teste = dataBase.profileDao().getProfile()
 
-                Log.e("profileDao", teste.toString())
                 val profileModel = convertEntityToModel(profile)
 
                 Result.Success(profileModel)

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.dionataferraz.vendas.UserIdTest
 import br.com.dionataferraz.vendas.activities.login.domain.useCase.LoginUseCase
 import br.com.dionataferraz.vendas.activities.profile.ProfileModel
 import kotlinx.coroutines.launch
@@ -32,9 +33,8 @@ class LoginViewModel : ViewModel() {
 
             } else {
                 val user = useCase.login(email, password)
-
+                UserIdTest.id = user.get()!!.id
                 if (user.get() != null) {
-                    Log.e("Fez login como", user.toString())
                     home.value = true
 
                 } else {

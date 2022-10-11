@@ -12,12 +12,12 @@ class TransactionRepository {
 
     }
 
-    suspend fun createTransaction(transaction: TransactionModel): Result<TransactionModel, ErrorModel> {
-        return dataSource.createTransaction(transaction)
+    suspend fun createTransaction(userId: Int, transaction: TransactionModel): Result<TransactionModel, ErrorModel> {
+        return dataSource.createTransaction(userId, transaction)
 
     }
 
-    suspend fun getTransaction(userId: Int): Result<List<TransactionModel>, ErrorModel> {
+    suspend fun getTransactions(userId: Int): Result<List<TransactionModel>, ErrorModel> {
         return dataSource.getTransactions(userId)
 
     }

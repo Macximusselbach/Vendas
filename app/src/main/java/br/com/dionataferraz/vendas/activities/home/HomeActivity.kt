@@ -25,6 +25,8 @@ class HomeActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle("Home")
 
+        viewModel.sumMoney()
+
         binding.btCreateAccount.setOnClickListener {
             val intent = Intent(this, AccountCreateActivity::class.java)
             startActivity(intent)
@@ -39,6 +41,10 @@ class HomeActivity : AppCompatActivity() {
         binding.btNewTransaction.setOnClickListener {
             val intent = Intent(this, TransactionsCreateActivity::class.java)
             startActivity(intent)
+        }
+
+        viewModel.showMoney.observe(this) { money ->
+            binding.tvMoney.text = money
         }
 
     }

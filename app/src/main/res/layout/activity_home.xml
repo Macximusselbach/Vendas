@@ -37,16 +37,25 @@
             app:layout_constraintBottom_toBottomOf="@+id/v_header"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/bt_operations"
+        <TextView
+            android:id="@+id/tv_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/home_bank_bt_see_operations"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/v_separator"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/v_header" />
+
+        <Button
+            android:id="@+id/bt_operations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_bank_bt_see_operations"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/v_separator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_money" />
 
         <View
             android:id="@+id/v_separator"

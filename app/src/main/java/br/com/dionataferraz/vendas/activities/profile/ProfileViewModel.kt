@@ -51,8 +51,6 @@ class ProfileViewModel : ViewModel() {
                 sucess.value = true
 
                 val saveDb = useCase.getProfileFromLocalDb()
-                Log.e("Salvo no local (pfl) ", saveDb.get().toString())
-                Log.e("Salvo na api (pfl)", apiResponse.get().toString())
 
             }
 

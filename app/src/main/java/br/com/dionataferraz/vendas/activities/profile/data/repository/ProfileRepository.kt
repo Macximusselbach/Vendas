@@ -20,7 +20,6 @@ class ProfileRepository {
     }
 
     suspend fun createProfile(profile: ProfileModel): Result<ProfileModel, ErrorModel> {
-        Log.e("Chegou aqui (pfl repo)", profile.toString())
         return remoteDataSource.createProfile(profile)
 
     }

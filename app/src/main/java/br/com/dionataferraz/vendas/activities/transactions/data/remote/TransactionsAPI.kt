@@ -9,9 +9,9 @@ import retrofit2.http.Path
 
 interface TransactionsAPI {
 
-    @POST("api/transaction")
-    suspend fun createTransaction(@Body transaction: TransactionModel): TransactionResponse
+    @POST("api/transaction/{userId}")
+    suspend fun createTransaction(@Path("userId") userId: Int, @Body transaction: TransactionModel)
 
-    @GET("api/transaction")
-    suspend fun getTransactions(@Path("userId") userid: Int): List<TransactionResponse>
+    @GET("api/transaction/{userId}")
+    suspend fun getTransactions(@Path("userId") userId: Int): List<TransactionResponse>
 }

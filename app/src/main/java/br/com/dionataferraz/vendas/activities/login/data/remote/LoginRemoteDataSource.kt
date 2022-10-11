@@ -22,7 +22,6 @@ class LoginRemoteDataSource {
                 Result.Success(user)
 
             } catch (exception: Exception) {
-                Log.e("login remote ds", "exception", exception)
                 Result.Error(ErrorModel)
 
             }

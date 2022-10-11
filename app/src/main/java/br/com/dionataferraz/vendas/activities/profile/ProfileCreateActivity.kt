@@ -61,7 +61,7 @@ class ProfileCreateActivity : AppCompatActivity() {
         }
 
         viewModel.shouldShowError.observe(this) { shouldShow ->
-            if (shouldShow != null) {
+            if (!shouldShow.isNullOrBlank()) {
                 Toast.makeText(
                     this,
                     shouldShow,

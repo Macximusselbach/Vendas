@@ -12,13 +12,13 @@ class TransactionUseCase {
 
     }
 
-    suspend fun createTransaction(transaction: TransactionModel): Result<TransactionModel, ErrorModel> {
-        return repository.createTransaction(transaction,)
+    suspend fun createTransaction(userId: Int, transaction: TransactionModel): Result<TransactionModel, ErrorModel> {
+        return repository.createTransaction(userId, transaction,)
 
     }
 
-    suspend fun getTransaction(userId: Int): Result<List<TransactionModel>, ErrorModel> {
-        return repository.getTransaction(userId)
+    suspend fun getTransactions(userId: Int): Result<List<TransactionModel>, ErrorModel> {
+        return repository.getTransactions(userId)
 
     }
 }

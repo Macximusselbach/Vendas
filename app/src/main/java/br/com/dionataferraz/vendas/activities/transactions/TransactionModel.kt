@@ -2,6 +2,8 @@ package br.com.dionataferraz.vendas.activities.transactions
 
 data class TransactionModel(
     val value : Double,
-    val place : TransactionPlace,
+    val transactionType : TransactionPlace,
     val description : String
-)
+) {
+    val id: Int = 0
+}

@@ -18,10 +18,8 @@ class SplashViewModel: ViewModel() {
     val shouldGoHome: LiveData<Boolean> = existsUser
 
     fun checkExistsProfile() {
-        Log.e("Salvo no local (splash)", "chechExistsProfile")
         viewModelScope.launch {
             val savedProfile = useCase.getProfileFromLocalDb()
-            Log.e("Salvo no local (splash)", savedProfile.get().toString())
             existsUser.value = savedProfile.get() != null
 
 

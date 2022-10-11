@@ -19,10 +19,7 @@ class LoginRepository {
 
     suspend fun login(email: String, password: String): Result<LoginUserResponse, ErrorModel> {
         val response = remoteDataSource.login(email = email, password = password)
-        Log.e("aaaa", response.toString())
         val profileEntity = profileLocalDataSource.convertResponseToEntity(response.get()!!)
-
-        Log.e("aaaa", profileEntity.toString())
         profileLocalDataSource.createProfile(profileEntity)
 
         return response

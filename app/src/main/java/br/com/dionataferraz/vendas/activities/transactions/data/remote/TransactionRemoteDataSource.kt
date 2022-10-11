@@ -1,5 +1,6 @@
 package br.com.dionataferraz.vendas.activities.transactions.data.remote
 
+import android.util.Log
 import br.com.dionataferraz.vendas.activities.transactions.TransactionModel
 import br.com.dionataferraz.vendas.activities.transactions.TransactionPlace
 import br.com.dionataferraz.vendas.activities.transactions.data.response.TransactionResponse
@@ -13,12 +14,12 @@ class TransactionRemoteDataSource {
 
     private val service = RetrofitNetworkClient.createNetworkClient().create(TransactionsAPI::class.java)
 
-    suspend fun createTransaction(transaction: TransactionModel): Result<TransactionModel, ErrorModel> {
+    suspend fun createTransaction(userId: Int, transaction: TransactionModel): Result<TransactionModel, ErrorModel> {
         return withContext(Dispatchers.IO) {
             try {
-                val transacionResponse = service.createTransaction(transaction)
-                val transactionModel = convertResponseToModel(transacionResponse)
-                Result.Success(transactionModel)
+                service.createTransaction(userId, transaction)
+
+                Result.Success(transaction)
 
             } catch (exception: Exception) {
                 Result.Error(ErrorModel)
@@ -30,8 +31,9 @@ class TransactionRemoteDataSource {
     suspend fun getTransactions(userId: Int): Result<List<TransactionModel>, ErrorModel> {
         return withContext(Dispatchers.IO) {
             try {
-                val transactionsListResposne = service.getTransactions(userId)
-                val transactionsListModel = convertResponseListToModel(transactionsListResposne)
+                val transactionsListResponse = service.getTransactions(userId)
+                Log.e("pegou na api", transactionsListResponse.toString())
+                val transactionsListModel = convertResponseListToModel(transactionsListResponse)
                 Result.Success(transactionsListModel)
 
             } catch (exception: Exception) {
@@ -41,15 +43,6 @@ class TransactionRemoteDataSource {
         }
     }
 
-    private fun convertResponseToModel(transactionToConvert: TransactionResponse): TransactionModel {
-        return TransactionModel(
-            transactionToConvert.value,
-            checkPlace(transactionToConvert.place),
-            transactionToConvert.description
-        )
-
-    }
-
     private fun convertResponseListToModel(transactionsToConvert: List<TransactionResponse>): List<TransactionModel> {
         val convertedItems = mutableListOf<TransactionModel>()
 
@@ -57,7 +50,7 @@ class TransactionRemoteDataSource {
             convertedItems.add(
                 TransactionModel(
                     transaction.value,
-                    checkPlace(transaction.place),
+                    checkPlace(transaction.transactionType),
                     transaction.description
                 )
             )
